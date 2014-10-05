@@ -7,12 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% if notice %>
-    <p class="alert alert-success"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-    <p class="alert alert-danger"><%= alert %></p>
-  <% end %>
+ <% if flash.any? %>
+  <div>
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 
   <p class="navbar-text pull-right">
   <% if user_signed_in? %>
