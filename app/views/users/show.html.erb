@@ -1,1 +1,15 @@
-<h1><%= @user.first_name%>'s Kitchen</h1>
+<h1><%= @user.first_name%>'s profile</h1>
+<ul>
+  <% @user.meals.each do |meal| %>
+   <li>
+    <p><%=meal.name%></p>
+    <p>About: <%=meal.description%></p>
+    <p>Portion: <%=meal.portion%></p>
+    <p>Price: $<%=meal.price%></p>
+    <p>Date: <%=meal.created_at%></p>
+
+    <% if meal.portion > 0 %>
+    <%= link_to "order", new_user_meal_order_path(@user, @user.meals, @user.meals.orders)%>
+    <% end %>
+  </li>
+  <% end %>
