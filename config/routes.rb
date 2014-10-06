@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show, :index, :edit, :update] do
-    resources :kitchens
+
   end
+
+  resources :kitchens
 
   root "welcome#index"
   # The priority is based upon order of creation: first created -> highest priority.

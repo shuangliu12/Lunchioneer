@@ -7,10 +7,10 @@ class KitchensController < ApplicationController
     @kitchen = Kitchen.find(params[:user_id])
   end
 
-  # def new
-  #   @kitchen = Kitchen.new
-  #   @user = @kitchen.user
-  # end
+  def new
+    @kitchen = Kitchen.new
+    @user = @kitchen.user
+  end
 
   # def edit
   #   @kitchen = Kitchen.find(params[:id])
