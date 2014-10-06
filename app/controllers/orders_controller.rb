@@ -4,7 +4,15 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
     @meal = Meal.find(params[:meal_id])
+
+    @order = Order.new(meal: @meal, user: current_user)
+    if @order.save
+      @meal.portion -=1
+      @meal.save
+      redirect_to meal_order_path(@meal, @order)
+    else
+
+    end
   end
 end

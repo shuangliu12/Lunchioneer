@@ -1,0 +1,16 @@
+<h1>All the meals</h1>
+<ul>
+<% @meals.each do |meal| %>
+  <li>
+    <p>Chef: <%=meal.user.first_name%></p>
+    <p><%=meal.name%></p>
+    <p>About: <%=meal.description%></p>
+    <p>Portion: <%=meal.portion%></p>
+    <p>Price: $<%=meal.price%></p>
+    <p>Date: <%=meal.created_at%></p>
+    <%= link_to "Order", meal_orders_path(meal), method: :post%>
+  </li>
+<% end %>
+</ul>
+<%= link_to "create a new meal", new_meal_path%>
+

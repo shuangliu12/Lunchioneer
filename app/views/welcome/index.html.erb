@@ -1,1 +1,5 @@
 <h1>Welcome to Lunchioneer</h1>
+
+<% if current_user %>
+  <%= link_to "my meals", meals_path%>
+<% end %>

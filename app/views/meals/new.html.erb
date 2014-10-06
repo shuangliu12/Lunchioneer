@@ -1,6 +1,6 @@
 <% if current_user %>
 
-<%= form_for [current_user, @meal] do |f| %>
+<%= form_for @meal do |f| %>
   <% if @meal.errors.any? %>
       <div id="error_explanation">
         <h2>
