@@ -1,5 +1,16 @@
 <h1><%= @user.first_name%>'s profile</h1>
-<h2>Meals Order History</h2>
+<h2>My Order History</h2>
+<ul>
+  <% @user.orders.each do |order|%>
+  <li>
+    <p>Food: <%= order.meal.name%> by : Chef <%= link_to order.meal.user.first_name, user_path(order.meal.user)%></p>
+  </li>
+  <% end %>
+</ul>
+
+
+
+<h2>My Meals</h2>
 <ul>
   <% @user.meals.each do |meal| %>
    <li>
@@ -8,7 +19,9 @@
     <p>Portion: <%=meal.portion%></p>
     <p>Price: $<%=meal.price%></p>
     <p>Date: <%=meal.created_at%></p>
-
-
   </li>
   <% end %>
+
+<p><%= link_to "Create a new meal", new_meal_path%></p>
+
+<p><%= link_to "Main", root_path %></p>

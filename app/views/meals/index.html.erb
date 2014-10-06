@@ -8,9 +8,15 @@
     <p>Portion: <%=meal.portion%></p>
     <p>Price: $<%=meal.price%></p>
     <p>Date: <%=meal.created_at%></p>
-    <%= link_to "Order", meal_orders_path(meal), method: :post%>
+    <% if current_user %>
+      <%= link_to "Order", meal_orders_path(meal), method: :post%>
+    <% else %>
+      <p>Your need to <%=link_to "log in", user_session_path%> to make an order.</p>
+    <% end %>
   </li>
 <% end %>
 </ul>
-<%= link_to "create a new meal", new_meal_path%>
+
+<%=link_to "Main", root_path%>
+
 
