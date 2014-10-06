@@ -5,4 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   # before_create :build_kitchen
   has_one :kitchen
+  has_many :meals
+  has_many :orders
 end

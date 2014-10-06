@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show, :index, :edit, :update] do
-
+    resources :orders, only: [:index]
+  end
+  resources :meals do
+    resources :orders
   end
 
   resources :kitchens

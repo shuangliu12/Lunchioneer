@@ -1,3 +1,8 @@
 <h1>Welcome to Lunchioneer</h1>
 
-<h4>Seach <%=link_to "all kitchens", kitchens_path%></h4>
+<%= link_to "All Meals", meals_path%>
+
+<% if current_user %>
+  <%= link_to "I am a Chef", user_path(current_user) %>
+<% end %>
+
