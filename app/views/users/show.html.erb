@@ -1,6 +1,10 @@
 
 <h1><%= @user.first_name%>'s Profile</h1>
-<%= link_to "kitchen", user_kitchens_path(@user, @user.kitchen)%>
+<% if @user.kitchen.nil? %>
+  <%=link_to "Create your kitchen", new_user_kitchen_path(@user, @user.kitchen)%>
+<%else%>
+  <%= link_to "kitchen", user_kitchen_path(@user, @user.kitchen)%>
+<% end %>
 
 <h1><%= @user.first_name%>'s profile</h1>
 <h2>My Order History</h2>
