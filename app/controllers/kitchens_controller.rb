@@ -4,11 +4,12 @@ class KitchensController < ApplicationController
   end
 
   def show
-    @kitchen = Kitchen.find(params[:user_id])
+    @kitchen = Kitchen.find(params[:id])
   end
 
   def new
     @kitchen = Kitchen.new
+    @user = current_user
   end
 
   def edit
@@ -17,7 +18,6 @@ class KitchensController < ApplicationController
 
   def update
     @kitchen = Kitchen.find(params[:id])
-
     if @kitchen.update(kitchen_params)
       flash[:notice] = "You have successfully updated your kitchen profile."
       redirect_to kitchen_path(@kitchen)
