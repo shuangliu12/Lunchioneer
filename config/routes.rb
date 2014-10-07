@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show, :index, :edit, :update] do
-    resources :kitchen
+    resources :kitchens
   end
 
   root "welcome#index"  # The priority is based upon order of creation: first created -> highest priority.

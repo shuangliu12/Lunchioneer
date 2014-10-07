@@ -1,6 +1,5 @@
 <% if current_user %>
-
-<%= form_for @kitchen do |f| %>
+<%= form_for [@kitchen.user, @kitchen] do |f| %>
   <% if @kitchen.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@kitchen.errors.count, "error") %> prohibited this kitchen from being saved:</h2>

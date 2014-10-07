@@ -9,7 +9,9 @@ class KitchensController < ApplicationController
 
   def new
     @kitchen = Kitchen.new
-    @user = current_user
+    @user = User.find(params[:user_id])
+    # @kitchen.user = current_user
+    @kitchen.user_id = @user.id
   end
 
   def edit
@@ -29,11 +31,13 @@ class KitchensController < ApplicationController
 
    def create
     @kitchen = Kitchen.new(kitchen_params)
-    @kitchen.user = current_user
+    @user = User.find(params[:user_id])
+    # @kitchen.user = current_user
+    @kitchen.user_id = @user.id
 
     if @kitchen.save
       flash[:notice] = "You have successfully created your kitchen."
-      redirect_to kitchens_path
+      redirect_to @kitchen
     else
       flash[:notice] = "You need to fill out the required fields."
       render 'new'

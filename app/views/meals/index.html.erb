@@ -2,7 +2,7 @@
 <ul>
 <% @meals.each do |meal| %>
   <li>
-    <p>Chef: <%=meal.user.first_name%></p>
+    <p>Chef: <%=link_to meal.user.first_name, user_path(meal.user)%></p>
     <p><%=meal.name%></p>
     <p>About: <%=meal.description%></p>
     <p>Portion: <%=meal.portion%></p>
