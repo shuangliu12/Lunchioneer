@@ -2,14 +2,21 @@
 
 <h1><%=@kitchen.name%></h1>
 <% if current_user == @kitchen.user %>
+  <p><%= link_to "Edit my kitchen profile", edit_user_kitchen_path(@kitchen.user, @kitchen)%></p>
+  <p><%= link_to "Delete my kitchen", user_kitchen_path, method: :delete, data: {confirm: 'Are you sure you want to delete your meal?'}%></p>
   <p><%= link_to "Create a new meal", new_meal_path%></p>
 <% end %>
 
-<h2>My Meals</h2>
+<p>About: <%= @kitchen.description%>
+<p>Where: <%= @kitchen.address%>, <%= @kitchen.city%>, <%= @kitchen.state%>, <%= @kitchen.zipcode%></p>
+
+
+<h2>Lunch for Tomorrow</h2>
 <ul>
   <% @kitchen.user.meals.each do |meal| %>
    <li>
-    <p><%=meal.name%></p>
+    <p><%=meal.name%></p> <%= link_to "Edit my meal", edit_meal_path(meal)%>
+    <%= link_to "Delete my meal", meal_path(meal), method: :delete, data: {confirm: 'Are you sure you want to delete your meal?'}%>
     <p>About: <%=meal.description%></p>
     <p>Portion: <%=meal.portion%></p>
     <p>Price: $<%=meal.price%></p>
@@ -22,4 +29,7 @@
   </li>
   <% end %>
 
-  <%= link_to "Main", root_path %>
+
+
+
+

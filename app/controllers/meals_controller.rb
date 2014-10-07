@@ -1,6 +1,6 @@
 class MealsController < ApplicationController
   def index
-    @meals =Meal.all
+    @meals =Meal.order(:created_at).page params[:page]
   end
 
   def new
@@ -20,17 +20,27 @@ class MealsController < ApplicationController
     end
   end
 
-  # def order
-  #   @meal = Meal.find(params[:meal_id])
-  #   @user = User.find(params[:user_id])
-  #   @order = Order.find_or_create_by(user: current_user, meal: @meal)
+  def edit
+    @meal = Meal.find(params[:id])
+  end
 
-  #   if @order.save
-  #     @meal.portion -= 1
-  #     flash[:notice] = "You have successfully made an order."
-  #     redirect_to order_path
-  #   end
-  # end
+  def update
+    @meal = Meal.find(params[:id])
+    if @meal.update(meal_params)
+      flash[:notice] = "You have successfully updated your meal."
+      redirect_to user_kitchen_path(@meal.user, @meal.user.kitchen)
+    else
+      flash[:notice] = "You need to fill out the required fields."
+      render 'show'
+    end
+  end
+
+    def destroy
+      @meal = Meal.find(params[:id])
+      @meal.destroy
+        flash[:success] = "You have successfully deleted your meal."
+      redirect_to user_kitchen_path(@meal.user, @meal.user.kitchen)
+    end
 
   private
 
