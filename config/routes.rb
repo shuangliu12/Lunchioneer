@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
+  devise_for :users
+  resources :users, only: [:show, :index, :edit, :update] do
+    resources :orders, only: [:index]
+  end
+  resources :meals do
+    resources :orders
+  end
+
+  resources :users, only: [:show, :index, :edit, :update] do
+    resources :kitchens
+  end
+
+  root "welcome#index"  # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"

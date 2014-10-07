@@ -1,0 +1,8 @@
+<h1>Welcome to Lunchioneer</h1>
+
+<%= link_to "All Meals", meals_path%>
+
+<% if current_user %>
+  <%= link_to "I am a Chef", user_path(current_user) %>
+<% end %>
+
