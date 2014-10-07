@@ -1,17 +1,18 @@
-
-<h1><%= @user.first_name%>'s Profile</h1>
-<% if @user.kitchen.nil? %>
-  <%=link_to "Create your kitchen", new_user_kitchen_path(@user, @user.kitchen)%>
-<%else%>
-  <%= link_to "kitchen", user_kitchen_path(@user, @user.kitchen)%>
-<% end %>
+<p><%= link_to "Main", root_path %></p>
 
 <h1><%= @user.first_name%>'s profile</h1>
+
+<% if @user.kitchen.nil? %>
+  <h2><%=link_to "Create your kitchen", new_user_kitchen_path(@user, @user.kitchen)%></h2>
+<%else%>
+ <h2> <%= link_to @user.kitchen.name, user_kitchen_path(@user, @user.kitchen)%></h2>
+<% end %>
+
 <h2>My Order History</h2>
 <ul>
   <% @user.orders.each do |order|%>
   <li>
-    <p>Food: <%= order.meal.name%> by : Chef <%= link_to order.meal.user.first_name, user_path(order.meal.user)%></p>
+    <p>Food: <%= order.meal.name%> by : Chef <%= link_to order.meal.user.first_name, user_path(order.meal.user)%> From <%=link_to order.meal.user.kitchen.name, user_kitchen_path(order.meal.user, order.meal.user.kitchen)%> </p>
   </li>
   <% end %>
 </ul>
@@ -30,6 +31,3 @@
   </li>
   <% end %>
 
-<p><%= link_to "Create a new meal", new_meal_path%></p>
-
-<p><%= link_to "Main", root_path %></p>

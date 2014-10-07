@@ -3,6 +3,6 @@
 <%= link_to "All Meals", meals_path%>
 
 <% if current_user %>
-  <%= link_to "I am a Chef", user_path(current_user) %>
+  <%= link_to "I am a Chef", user_kitchen_path(current_user, current_user.kitchen) %>
 <% end %>
 

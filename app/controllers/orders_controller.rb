@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
       @meal.portion -=1
       @meal.save
       flash[:notice]="You have successfully placed your order."
-      redirect_to meals_path
+      redirect_to user_kitchen_path(@meal.user, @meal.user.kitchen)
     else
 
     end
