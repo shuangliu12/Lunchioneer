@@ -8,6 +8,5 @@ FactoryGirl.define do
     zipcode "02460"
 
     association :user
-    association :meal
   end
 end

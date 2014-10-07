@@ -5,8 +5,4 @@ class Meal < ActiveRecord::Base
 
   belongs_to :user
   has_many :orders
-
-  def portion_remaining
-
-  end
 end
