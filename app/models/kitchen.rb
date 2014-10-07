@@ -8,4 +8,5 @@ class Kitchen < ActiveRecord::Base
 
   belongs_to :user
   has_many :meals
+  paginates_per 1
 end

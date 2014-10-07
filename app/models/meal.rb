@@ -5,4 +5,14 @@ class Meal < ActiveRecord::Base
 
   belongs_to :user
   has_many :orders
+
+  paginates_per 5
+
+  def self.search(query)
+    if search.present?
+      # where("zipcode ilike :, :", q:'%{search}%') by distance
+    else
+      self.all
+    end
+  end
 end

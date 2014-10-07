@@ -1,8 +1,16 @@
 <h1>Welcome to Lunchioneer</h1>
 
+<%= form_tag meals_path, method: :get do %>
+  <%= text_field_tag :search, params[:search] %>
+  <button> <%= 'search'%></button>
+<% end %>
+
 <%= link_to "All Meals", meals_path%>
 
 <% if current_user %>
-  <%= link_to "I am a Chef", user_kitchen_path(current_user, current_user.kitchen) %>
+  <% if current_user.kitchen %>
+    <%= link_to "I am a Chef", user_kitchen_path(current_user, current_user.kitchen) %>
+  <% end %>
+  <%= link_to "My profile", user_path(current_user) %>
 <% end %>
 
