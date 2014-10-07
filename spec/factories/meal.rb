@@ -6,5 +6,6 @@ FactoryGirl.define do
     portion "2"
 
     associations :kitchen
+    associations :order
   end
 end

@@ -10,7 +10,8 @@ class OrdersController < ApplicationController
     if @order.save
       @meal.portion -=1
       @meal.save
-      redirect_to meal_order_path(@meal, @order)
+      flash[:notice]="You have successfully placed your order."
+      redirect_to meals_path
     else
 
     end
