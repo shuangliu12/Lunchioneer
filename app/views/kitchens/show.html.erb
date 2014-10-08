@@ -13,7 +13,7 @@
 
 <h2>Lunch for Tomorrow</h2>
 <ul>
-  <% @kitchen.user.meals.each do |meal| %>
+  <% @meals.each do |meal| %>
    <li>
     <p><%=meal.name%></p> <%= link_to "Edit my meal", edit_meal_path(meal)%>
     <%= link_to "Delete my meal", meal_path(meal), method: :delete, data: {confirm: 'Are you sure you want to delete your meal?'}%>
@@ -28,7 +28,7 @@
     <% end %>
   </li>
   <% end %>
-
+<%= paginate @meals %>
 <!-- reviews -->
 
   <% if current_user %>
@@ -41,20 +41,26 @@
           <% end %>
         </ul>
       <% end %>
-    <p>
-      <%= f.label :your_review %><br>
+
+      <%= f.label :body, "Your Review" %><br>
       <%= f.text_area :body %>
-    </p>
 
     <p>
-      <%= f.label :rating%><br>
+      <%= f.label :rating %><br>
       <%= f.select :rating, 1..5%>
     </p>
-    <%= f.submit%>
+    <%= f.submit %>
   <% end %>
 
 <% else %>
-  <p>Please Sign in to Leave a Review.</p>
+  <p>Please <%=link_to "sign in", user_session_path%>  to leave a review.</p>
+<% end %>
+
+<% if @reviews %>
+<% @reviews.each do |review|%>
+  <p><%= review.user.first_name %> </p>
+  <p><%= review.body %></p>
+  <% end %>
 <% end %>
 
 
