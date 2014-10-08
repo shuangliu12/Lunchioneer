@@ -5,9 +5,6 @@ class KitchensController < ApplicationController
 
   def show
     @kitchen = Kitchen.find(params[:id])
-    @meals = @kitchen.user.meals.order(:created_at).page(params[:page]).per(1)
-    @review = Review.new
-    @reviews = Review.where(kitchen: @kitchen)
   end
 
   def new
