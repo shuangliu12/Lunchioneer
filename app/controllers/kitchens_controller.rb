@@ -5,6 +5,7 @@ class KitchensController < ApplicationController
 
   def show
     @kitchen = Kitchen.find(params[:id])
+    @review = Review.new
   end
 
   def new
