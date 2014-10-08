@@ -10,4 +10,8 @@ class Kitchen < ActiveRecord::Base
   # has_many :meals
   has_many :reviews
   paginates_per 1
+
+  def owner?(user)
+    self.user = user
+  end
 end

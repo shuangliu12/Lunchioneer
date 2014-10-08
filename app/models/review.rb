@@ -6,4 +6,8 @@ class Review < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :kitchen
+
+  def owner?(user)
+    self.user = user
+  end
 end

@@ -57,9 +57,12 @@
 <% end %>
 
 <% if @reviews %>
-<% @reviews.each do |review|%>
-  <p><%= review.user.first_name %> </p>
-  <p><%= review.body %></p>
+  <% @reviews.each do |review|%>
+    <p><%= review.user.first_name %>: <%= review.body %></p>
+    <% if review.owner?(current_user)%>
+      <%= link_to "edit", edit_kitchen_review_path(@kitchen, review) %>
+      <%= link_to "delete", kitchen_review_path(@kitchen, review), method: :delte, data: {confirm: "Are you sure?"} %>
+    <% end %>
   <% end %>
 <% end %>
 
