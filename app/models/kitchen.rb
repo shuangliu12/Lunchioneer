@@ -7,7 +7,6 @@ class Kitchen < ActiveRecord::Base
   validates :zipcode, presence: true
 
   belongs_to :user
-  # has_many :meals
-  has_many :reviews
+  has_many :meals
   paginates_per 1
 end
