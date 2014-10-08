@@ -10,10 +10,9 @@
 <p>About: <%= @kitchen.description%>
 <p>Where: <%= @kitchen.address%>, <%= @kitchen.city%>, <%= @kitchen.state%>, <%= @kitchen.zipcode%></p>
 
-
 <h2>Lunch for Tomorrow</h2>
 <ul>
-  <% @kitchen.user.meals.each do |meal| %>
+  <% @meals.each do |meal| %>
    <li>
     <p><%=meal.name%></p> <%= link_to "Edit my meal", edit_meal_path(meal)%>
     <%= link_to "Delete my meal", meal_path(meal), method: :delete, data: {confirm: 'Are you sure you want to delete your meal?'}%>
@@ -28,8 +27,40 @@
     <% end %>
   </li>
   <% end %>
+<%= paginate @meals %>
 
 
+<% if current_user %>
+    <%= form_for [@kitchen, @review] do |f| %>
+      <% if @review.errors.any?%>
+        <%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:
+        <ul>
+          <% @review.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
 
+      <%= f.label :body, "Your Review" %><br>
+      <%= f.text_area :body %>
 
+    <p>
+      <%= f.label :rating %><br>
+      <%= f.select :rating, 1..5%>
+    </p>
+    <%= f.submit %>
+  <% end %>
 
+<% else %>
+  <p>Please <%=link_to "sign in", user_session_path%>  to leave a review.</p>
+<% end %>
+
+<% if @reviews %>
+  <% @reviews.each do |review|%>
+    <p><%= review.user.first_name %>: <%= review.body %></p>
+    <% if review.user == current_user%>
+      <%= link_to "edit", edit_kitchen_review_path(@kitchen, review) %>
+      <%= link_to "delete", kitchen_review_path(@kitchen, review), method: :delte, data: {confirm: "Are you sure?"} %>
+    <% end %>
+  <% end %>
+<% end %>
