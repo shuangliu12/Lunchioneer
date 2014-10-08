@@ -15,8 +15,4 @@ class Meal < ActiveRecord::Base
       self.all
     end
   end
-
-  def owner?(user)
-    self.user = user
-  end
 end

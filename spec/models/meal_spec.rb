@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Meal do
+RSpec.describe Meal, :type => :model do
   let!(:meal) { FactoryGirl.create(:meal) }
 
   it { should validate_presence_of :name }

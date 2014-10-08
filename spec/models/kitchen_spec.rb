@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Kitchen do
+RSpec.describe Kitchen, :type => :model do
   let!(:kitchen) { FactoryGirl.create(:kitchen) }
 
   it { should validate_presence_of :name }
