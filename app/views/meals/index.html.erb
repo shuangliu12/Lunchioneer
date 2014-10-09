@@ -2,10 +2,9 @@
 <ul>
 <% @meals.each do |meal| %>
   <li>
-    <p><%= link_to meal.user.kitchen.name, user_kitchen_path(meal.user, meal.user.kitchen) %>, Chef: <%=link_to meal.user.first_name, user_path(meal.user)%></p>
+    <p><%= meal.name %>, <%= link_to meal.user.kitchen.name, user_kitchen_path(meal.user, meal.user.kitchen) %>, Chef: <%=link_to meal.user.first_name, user_path(meal.user)%></p>
     <p><%= meal.user.kitchen.address%>, <%= meal.user.kitchen.city%>, <%= meal.user.kitchen.state%>, <%= meal.user.kitchen.zipcode%></p>
-    <p><%=meal.name%></p>
-    <p>Price: $<%=meal.price%></p>
+    <p>Price: $<%=meal.price%>, Portion: <%= meal.portion%></p>
     <% if current_user %>
       <%= link_to "Order", meal_orders_path(meal), method: :post%>
     <% else %>

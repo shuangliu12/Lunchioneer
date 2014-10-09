@@ -6,8 +6,8 @@ feature "user can search for meals based on location" do
       kitchen = FactoryGirl.create(:kitchen)
 
       visit root_path
-      fill_in("seacrh", with: kitchen.zipcode)
-      click_on "search"
+      fill_in("Search", with: kitchen.city)
+      click "Search"
 
       expect(page).to have_content(kitchen.name)
   end

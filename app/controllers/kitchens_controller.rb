@@ -1,10 +1,17 @@
 class KitchensController < ApplicationController
   def index
-    @kitchens = Kitchen.includes(:user)
+    if params[:search]
+      @kitchens = Kitchen.search(params[:search]).order(:name).page params[:page]
+    else
+      @kitchens = Kitchen.includes(:user)
+    end
   end
 
   def show
     @kitchen = Kitchen.find(params[:id])
+    @meals = @kitchen.user.meals.order(:created_at).page(params[:page]).per(1)
+    @review = Review.new
+    @reviews = Review.where(kitchen: @kitchen)
   end
 
   def new
@@ -17,7 +24,7 @@ class KitchensController < ApplicationController
   def create
     @kitchen = Kitchen.new(kitchen_params)
     @user = User.find(params[:user_id])
-    # @kitchen.user = current_user
+    @kitchen.user = current_user
     @kitchen.user_id = @user.id
 
       if @kitchen.save
@@ -40,7 +47,7 @@ class KitchensController < ApplicationController
       redirect_to user_kitchen_path(@kitchen.user, @kitchen)
     else
       flash[:notice] = "You need to fill out the required fields."
-      render 'show'
+      render 'new'
     end
   end
 

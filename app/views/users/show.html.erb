@@ -9,19 +9,24 @@
 <% end %>
 
 <h2>My Order History</h2>
+
 <ul>
-  <% @user.orders.each do |order|%>
-  <li>
-    <p>Food: <%= order.meal.name%> by : Chef <%= link_to order.meal.user.first_name, user_path(order.meal.user)%> From <%=link_to order.meal.user.kitchen.name, user_kitchen_path(order.meal.user, order.meal.user.kitchen)%> </p>
-  </li>
+  <% @orders.each do |order|%>
+    <li>
+      <% if order.meal%>
+        <p>Food: <%= order.meal.name%> by : Chef <%= link_to order.meal.user.first_name, user_path(order.meal.user)%> From <%=link_to order.meal.user.kitchen.name, user_kitchen_path(order.meal.user, order.meal.user.kitchen)%>
+        </p>
+      <% else%>
+        <p>This meal was deleted.</p>
+      <% end %>
+    </li>
   <% end %>
 </ul>
 
 
-
 <h2>My Meals</h2>
 <ul>
-  <% @user.meals.each do |meal| %>
+  <% @meals.each do |meal| %>
    <li>
     <p><%=meal.name%></p>
     <p>About: <%=meal.description%></p>
