@@ -31,8 +31,18 @@
   <% @orders.each do |order|%>
     <li>
       <% if order.meal%>
-        <p>Food: <%= order.meal.name%> by : Chef <%= link_to order.meal.user.first_name, user_path(order.meal.user)%> From <%=link_to order.meal.user.kitchen.name, user_kitchen_path(order.meal.user, order.meal.user.kitchen)%>
-        </p>
+        <p>Food: <%= order.meal.name%>
+        <% if order.meal.user%>
+        by: Chef <%= link_to order.meal.user.first_name, user_path(order.meal.user)%>
+        <% else %>
+        This chef does not exist anymore.
+        <% end %>
+        <% if order.meal.user.kitchen %>
+           From <%=link_to order.meal.user.kitchen.name, user_kitchen_path(order.meal.user, order.meal.user.kitchen)%>
+        <% else %>
+          This kitchen does not exist anymore.
+        <% end %>
+          </p>
       <% else%>
         <p>This meal was deleted.</p>
       <% end %>

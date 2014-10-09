@@ -9,9 +9,9 @@ class User < ActiveRecord::Base
 
   mount_uploader :profile_photo, ProfilePhotoUploader
 
-  has_one :kitchen
-  has_many :meals
-  has_many :orders
+  has_one :kitchen, dependent: :destroy
+  has_many :meals, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   def is_admin?
     admin == true

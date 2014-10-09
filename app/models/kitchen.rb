@@ -8,6 +8,7 @@ class Kitchen < ActiveRecord::Base
 
   belongs_to :user
   has_many :meals
+  has_many :reviews, dependent: :destroy
   paginates_per 1
 
   def self.search(search)
