@@ -1,0 +1,24 @@
+<% if current_user %>
+    <%= form_for [@review.kitchen, @review] do |f| %>
+      <% if @review.errors.any?%>
+        <%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:
+        <ul>
+          <% @review.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <%= f.label :body, "Your Review" %><br>
+      <%= f.text_area :body %>
+
+    <p>
+      <%= f.label :rating %><br>
+      <%= f.select :rating, 1..5%>
+    </p>
+    <%= f.submit %>
+  <% end %>
+
+<% else %>
+  <p>Please <%=link_to "sign in", user_session_path%>  to leave a review.</p>
+<% end %>

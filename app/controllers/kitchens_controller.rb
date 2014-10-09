@@ -1,6 +1,10 @@
 class KitchensController < ApplicationController
   def index
-    @kitchens = Kitchen.includes(:user)
+    if params[:search]
+      @kitchens = Kitchen.search(params[:search]).order(:name).page params[:page]
+    else
+      @kitchens = Kitchen.includes(:user)
+    end
   end
 
   def show
@@ -44,7 +48,7 @@ class KitchensController < ApplicationController
       redirect_to user_kitchen_path(@kitchen.user, @kitchen)
     else
       flash[:notice] = "You need to fill out the required fields."
-      render 'show'
+      render 'new'
     end
   end
 

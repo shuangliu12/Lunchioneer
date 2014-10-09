@@ -1,8 +1,8 @@
 <h1>Welcome to Lunchioneer</h1>
 
 <%= form_tag meals_path, method: :get do %>
-  <%= text_field_tag :search, params[:search] %>
-  <button> <%= 'search'%></button>
+  <%= text_field_tag :search, params[:search], placeholder: "enter your city" %>
+  <%= submit_tag "Search", :name => nil %>
 <% end %>
 
 <%= link_to "All Meals", meals_path%>

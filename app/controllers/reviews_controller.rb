@@ -11,9 +11,10 @@ class ReviewsController < ApplicationController
 
     if @review.save
       flash[:success] = "You have successfully created your review."
-      redirect_to @kitchen
+      redirect_to user_kitchen_path(@kitchen.user, @kitchen)
     else
-      render "kitchen#show"
+      flash[:notice] = "Please fill out the review form correctly."
+      render 'new'
     end
   end
 
@@ -29,9 +30,9 @@ class ReviewsController < ApplicationController
 
     if @review.update(review_params)
       flash[:sucess] = "You have successfully updated your review."
-      redirect_to @kitchen
+      redirect_to user_kitchen_path(@kitchen.user, @kitchen)
     else
-      render 'new'
+      render 'edit'
     end
   end
 
@@ -42,7 +43,7 @@ class ReviewsController < ApplicationController
     @review.kitchen_id = params[:kitchen_id]
     @review.destroy
       flash[:success] = "You have successfully deleted your review."
-    redirect_to @kitchen
+    redirect_to user_kitchen_path(@kitchen.user, @kitchen)
   end
 
   private
