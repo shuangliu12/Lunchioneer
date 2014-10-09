@@ -1,7 +1,7 @@
 class KitchensController < ApplicationController
   def index
     if params[:search]
-      @kitchens = Kitchen.search(params[:search]).order(:name).page params[:page]
+      @kitchens = Kitchen.search(params[:search]).page params[:page]
     else
       @kitchens = Kitchen.includes(:user)
     end
