@@ -16,11 +16,10 @@ feature "authenticated user can edit or delete meal" do
 
   scenario "authorized user can edit or delete a meal" do
     meal = FactoryGirl.create(:meal)
-    kitchen = FactoryGirl.create(:kitchen)
+    kitchen = FactoryGirl.create(:kitchen, user: meal.user)
 
     sign_in_as(meal.user)
     visit user_kitchen_path(kitchen.user, kitchen)
-
     click_on "delete"
     expect(page).to_not have_content(meal.name)
   end

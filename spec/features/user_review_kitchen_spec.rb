@@ -43,9 +43,8 @@ feature "Authenticated user can leave reviews in the kitchen page" do
     visit user_kitchen_path(kitchen.user, kitchen)
 
     select 4, from: "Rating"
-
     click_on "Create Review"
 
-    expect(page).to have_content("error")
+    expect(page).to have_content("Please fill out the review form correctly.")
   end
 end

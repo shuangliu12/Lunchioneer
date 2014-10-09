@@ -11,11 +11,10 @@ class ReviewsController < ApplicationController
 
     if @review.save
       flash[:success] = "You have successfully created your review."
-      redirect_to user_kitchen_path(@kitchen.user, @kitchen)
     else
       flash[:notice] = "Please fill out the review form correctly."
-      render 'new'
     end
+    redirect_to user_kitchen_path(@kitchen.user, @kitchen)
   end
 
   def edit

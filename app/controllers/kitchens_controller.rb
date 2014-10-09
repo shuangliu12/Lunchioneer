@@ -12,7 +12,6 @@ class KitchensController < ApplicationController
     @meals = @kitchen.user.meals.order(:created_at).page(params[:page]).per(1)
     @review = Review.new
     @reviews = Review.where(kitchen: @kitchen)
-
   end
 
   def new
