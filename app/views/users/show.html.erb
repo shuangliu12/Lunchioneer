@@ -2,6 +2,23 @@
 
 <h1><%= @user.first_name%>'s profile</h1>
 
+  <% if @user.profile_photo.nil? %>
+    <% image_tag 'https://s3-us-west-2.amazonaws.com/lunchioneer-development/1.jpg'%>
+  <% else %>
+    <%= image_tag @user.profile_photo.url %>
+  <% end %>
+
+<% if @user == current_user %>
+  <%= form_for @user do |f| %>
+    <p>
+    <%= f.label :profile_photo %>
+    <%= f.file_field :profile_photo %>
+    </p>
+    <%= f.submit "Update Photo"%>
+  <% end %>
+<% end %>
+
+
 <% if @user.kitchen.nil? %>
   <h2><%=link_to "Create your kitchen", new_user_kitchen_path(@user, @user.kitchen)%></h2>
 <%else%>
