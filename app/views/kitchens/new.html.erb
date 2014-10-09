@@ -33,6 +33,7 @@
 
     <%= f.submit%>
   <% end %>
+    <%=link_to "cancel", user_path(current_user)%>
 <% else %>
   <h3>Please Sign In to Create your Kitchen </h3>
 <% end %>
