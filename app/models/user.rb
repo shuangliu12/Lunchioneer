@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
   has_one :kitchen
   has_many :meals
   has_many :orders
+
+  def is_admin?
+    admin == true
+  end
 end

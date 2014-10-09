@@ -19,6 +19,22 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  namespace :admin do
+    resources :kitchens, only: [:index, :show, :edit, :update, :destroy] do
+      resources :reviews, only: [:index, :show, :edit, :update, :destroy]
+    end
+  end
+
+  namespace :admin do
+    resources :meals, only: [:index, :show, :edit, :update, :destroy] do
+      resources :orders, only: [:index, :destroy]
+    end
+  end
+
+  namespace :admin do
+    resources :users, only: [:index]
+  end
+
   root "welcome#index"  # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
