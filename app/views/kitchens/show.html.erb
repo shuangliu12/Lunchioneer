@@ -1,13 +1,18 @@
 <h3><%=link_to "Lunchionner", root_path%></h3>
 
-<% if @kitchen.kitchen_photo %>
-  <%= image_tag @kitchen.kitchen_photo.url %>
-<% end %>
+  <%= image_tag @kitchen.kitchen_photo.url%>
 
 <h1><%=@kitchen.name%></h1>
 <% if current_user == @kitchen.user %>
   <p><%= link_to "Edit my kitchen profile", edit_user_kitchen_path(@kitchen.user, @kitchen)%></p>
   <p><%= link_to "Delete my kitchen", user_kitchen_path, method: :delete, data: {confirm: 'Are you sure you want to delete your kitchen?'}%></p>
+  <%= form_for @kitchen do |f| %>
+    <p>
+    <%= f.label :kitchen_photo %>
+    <%= f.file_field :kitchen_photo %>
+    </p>
+    <%= f.submit "Update Photo"%>
+  <% end %>
 <% end %>
 
 <p>Rating: <%= @kitchen.cal_rating%></p>
@@ -70,7 +75,7 @@
 <% if @reviews %>
   <% @reviews.each do |review|%>
     <p><%= review.user.first_name %>: <%= review.body %></p>
-    <% if review.user == current_user || current_user. is_admin?%>
+    <% if review.user == current_user || current_user.is_admin? %>
       <%= link_to "edit", edit_kitchen_review_path(@kitchen, review) %>
       <%= link_to "delete", kitchen_review_path(@kitchen, review), method: :delete, data: {confirm: "Are you sure?"} %>
     <% end %>

@@ -3,7 +3,7 @@
 <h1><%= @user.first_name%>'s profile</h1>
 
   <% if @user.profile_photo.nil? %>
-    <% image_tag 'https://s3-us-west-2.amazonaws.com/lunchioneer-development/1.jpg'%>
+    <% image_tag user.default_url %>
   <% else %>
     <%= image_tag @user.profile_photo.url %>
   <% end %>

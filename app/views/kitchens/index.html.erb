@@ -1,11 +1,11 @@
 <h1>All Kitchens</h1>
 
 <ul>
-<% @kitchens.each do |kitchen| %>
+  <% @kitchens.each do |kitchen| %>
   <li>
     <p><%= link_to kitchen.name, user_kitchen_path(kitchen.user, kitchen) %>, <%= kitchen.user.first_name%></p>
     <p> <%= kitchen.address%>, <%= kitchen.city%>, <%= kitchen.state%>, <%= kitchen.zipcode%></p>
   </li>
   <% end %>
 </ul>
-<h4><%= link_to "Create my Kitchen", new_user_kitchen_path(current_user)%></h4>
+

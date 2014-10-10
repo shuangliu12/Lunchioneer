@@ -1,7 +1,7 @@
 # encoding: utf-8
 
-class ProfilePhotoUploader < CarrierWave::Uploader::Base
-  if Rails.env.production? || Rails.env.development?
+class KitchenPhotoUploader < CarrierWave::Uploader::Base
+if Rails.env.production? || Rails.env.development?
     storage :fog
   else
     storage :file
@@ -14,4 +14,5 @@ class ProfilePhotoUploader < CarrierWave::Uploader::Base
   def default_url
     "https://s3-us-west-2.amazonaws.com/lunchioneer-development/1.jpg"
   end
+
 end
