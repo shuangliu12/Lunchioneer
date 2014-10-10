@@ -26,9 +26,10 @@
 </div>
 
 
-<div class = "large-10 columns">
+<div class = "container">
+
  <% if flash.any? %>
-  <div>
+  <div class = "alert-box">
     <% flash.keys.each do |type| %>
       <%=flash[type] %>
     <% end %>

@@ -21,6 +21,7 @@
 
 <h2>Lunch for Tomorrow</h2>
  <p><%= link_to "Create a new meal", new_meal_path%></p>
+
 <ul>
   <% @meals.each do |meal| %>
    <li>
@@ -29,21 +30,21 @@
       <%= link_to "edit", edit_meal_path(meal)%>
       <%= link_to "delete", meal_path(meal), method: :delete, data: {confirm: 'Are you sure you want to delete your meal?'}%>
     <% end %>
-    <p>About: <%=meal.description%></p>
-    <p>Portion: <%=meal.portion%></p>
-    <p>Price: $<%=meal.price%></p>
-    <p>Date: <%=meal.created_at%></p>
-    <% if user_signed_in? %>
-      <% if meal.portion > 0 %>
-        <%= link_to "Order", meal_orders_path(meal), method: :post%>
+      <p>About: <%=meal.description%></p>
+      <p>Portion: <%=meal.portion%></p>
+      <p>Price: $<%=meal.price%></p>
+      <p>Date: <%=meal.created_at%></p>
+      <% if user_signed_in? %>
+        <% if meal.portion > 0 %>
+          <%= link_to "Order", meal_orders_path(meal), method: :post%>
+        <% else %>
+          <p>Sold Out</p>
+        <% end %>
       <% else %>
-        <p>Sold Out</p>
+        <p>You need to <%=link_to "log in", user_session_path%> to make an order.</p>
       <% end %>
-    <% else %>
-      <p>You need to <%=link_to "log in", user_session_path%> to make an order.</p>
+    </li>
     <% end %>
-  </li>
-  <% end %>
 <%= paginate @meals %>
 
 
