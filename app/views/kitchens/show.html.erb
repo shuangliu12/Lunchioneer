@@ -1,10 +1,6 @@
 <h3><%=link_to "Lunchionner", root_path%></h3>
 
-<% if @kitchen.kitchen_photo %>
-  <%= image_tag @kitchen.kitchen_photo.url %>
-<% else %>
-<!-- default image -->
-<% end %>
+  <%= image_tag @kitchen.kitchen_photo.url%>
 
 <h1><%=@kitchen.name%></h1>
 <% if current_user == @kitchen.user %>

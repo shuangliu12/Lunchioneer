@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :orders
   end
-  resources :meals do
+  resources :meals, except: [:show] do
     resources :orders
   end
 
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users, only: [:index, :show]
+    resources :users, only: [:index]
   end
 
   root "welcome#index"  # The priority is based upon order of creation: first created -> highest priority.

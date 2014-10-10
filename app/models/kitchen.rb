@@ -7,9 +7,10 @@ class Kitchen < ActiveRecord::Base
   validates :zipcode, presence: true
 
   belongs_to :user
-  has_many :meals, dependent: :destroy
   has_many :reviews, dependent: :destroy
   paginates_per 1
+
+  mount_uploader :kitchen_photo, KitchenPhotoUploader
 
   def self.search(search)
     if search
