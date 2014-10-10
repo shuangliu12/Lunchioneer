@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_one :kitchen, dependent: :nullify
   has_many :meals, dependent: :nullify
   has_many :orders, dependent: :nullify
+  has_many :reviews, dependent: :nullify
 
   def is_admin?
     admin == true

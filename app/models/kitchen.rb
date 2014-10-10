@@ -8,6 +8,7 @@ class Kitchen < ActiveRecord::Base
 
   belongs_to :user
   has_many :reviews, dependent: :destroy
+
   paginates_per 1
 
   mount_uploader :kitchen_photo, KitchenPhotoUploader
