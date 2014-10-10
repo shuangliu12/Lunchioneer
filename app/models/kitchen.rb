@@ -7,13 +7,15 @@ class Kitchen < ActiveRecord::Base
   validates :zipcode, presence: true
 
   belongs_to :user
-  has_many :meals
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
+
   paginates_per 1
+
+  mount_uploader :kitchen_photo, KitchenPhotoUploader
 
   def self.search(search)
     if search
-      where("city ilike ?", '%{search}%')
+      where("city ilike :q", q: "%#{search}%")
     else
       self.all
     end

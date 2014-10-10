@@ -7,10 +7,12 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates :first_name, presence: true
 
-  has_one :kitchen
-  has_many :meals
-  has_many :orders
-  has_many :reviews
+  mount_uploader :profile_photo, ProfilePhotoUploader
+
+  has_one :kitchen, dependent: :nullify
+  has_many :meals, dependent: :nullify
+  has_many :orders, dependent: :nullify
+  has_many :reviews, dependent: :nullify
 
   def is_admin?
     admin == true

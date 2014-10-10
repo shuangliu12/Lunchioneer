@@ -1,11 +1,11 @@
 <h1>Welcome to Lunchioneer</h1>
 
-<%= form_tag meals_path, method: :get do %>
+<%= form_tag kitchens_path, method: :get do %>
   <%= text_field_tag :search, params[:search], placeholder: "enter your city" %>
   <%= submit_tag "Search", :name => nil %>
 <% end %>
 
-<%= link_to "All Meals", meals_path%>
+<%= link_to "All meals", meals_path%>
 
 <% if current_user %>
   <% if current_user.kitchen %>

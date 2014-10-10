@@ -1,7 +1,7 @@
 class KitchensController < ApplicationController
   def index
     if params[:search]
-      @kitchens = Kitchen.search(params[:search]).order(:name).page params[:page]
+      @kitchens = Kitchen.search(params[:search]).page params[:page]
     else
       @kitchens = Kitchen.includes(:user)
     end
@@ -42,6 +42,7 @@ class KitchensController < ApplicationController
 
   def update
     @kitchen = Kitchen.find(params[:id])
+
     if @kitchen.update(kitchen_params)
       flash[:notice] = "You have successfully updated your kitchen profile."
       redirect_to user_kitchen_path(@kitchen.user, @kitchen)

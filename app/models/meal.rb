@@ -4,7 +4,7 @@ class Meal < ActiveRecord::Base
   validates :portion, presence:true
 
   belongs_to :user
-  has_many :orders
+  has_many :orders, dependent: :destroy
 
   paginates_per 5
 end

@@ -2,13 +2,12 @@ require 'rails_helper'
 
 feature "user can search for meals based on location" do
   scenario "user can search for kitchens based on location" do
-      user = FactoryGirl.create(:user)
-      kitchen = FactoryGirl.create(:kitchen)
+    kitchen = FactoryGirl.create(:kitchen)
 
-      visit root_path
-      fill_in("Search", with: kitchen.city)
-      click "Search"
+    visit root_path
+    fill_in("search", with: kitchen.city)
+    click_on "Search"
 
-      expect(page).to have_content(kitchen.name)
+    expect(page).to have_content(kitchen.name)
   end
 end

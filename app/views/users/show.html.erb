@@ -2,6 +2,23 @@
 
 <h1><%= @user.first_name%>'s profile</h1>
 
+  <% if @user.profile_photo.nil? %>
+    <% image_tag user.default_url %>
+  <% else %>
+    <%= image_tag @user.profile_photo.url %>
+  <% end %>
+
+<% if @user == current_user %>
+  <%= form_for @user do |f| %>
+    <p>
+    <%= f.label :profile_photo %>
+    <%= f.file_field :profile_photo %>
+    </p>
+    <%= f.submit "Update Photo"%>
+  <% end %>
+<% end %>
+
+
 <% if @user.kitchen.nil? %>
   <h2><%=link_to "Create your kitchen", new_user_kitchen_path(@user, @user.kitchen)%></h2>
 <%else%>
@@ -14,8 +31,18 @@
   <% @orders.each do |order|%>
     <li>
       <% if order.meal%>
-        <p>Food: <%= order.meal.name%> by : Chef <%= link_to order.meal.user.first_name, user_path(order.meal.user)%> From <%=link_to order.meal.user.kitchen.name, user_kitchen_path(order.meal.user, order.meal.user.kitchen)%>
-        </p>
+        <p>Food: <%= order.meal.name%>
+        <% if order.meal.user%>
+        by: Chef <%= link_to order.meal.user.first_name, user_path(order.meal.user)%>
+        <% else %>
+        This chef does not exist anymore.
+        <% end %>
+        <% if order.meal.user.kitchen %>
+           From <%=link_to order.meal.user.kitchen.name, user_kitchen_path(order.meal.user, order.meal.user.kitchen)%>
+        <% else %>
+          This kitchen does not exist anymore.
+        <% end %>
+          </p>
       <% else%>
         <p>This meal was deleted.</p>
       <% end %>
