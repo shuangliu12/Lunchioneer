@@ -12,4 +12,10 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
  */
+/*= require foundation */
+.button-group > li{
+  padding-right: 10px;
+}

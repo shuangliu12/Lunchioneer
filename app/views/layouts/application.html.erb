@@ -7,24 +7,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="row">
+  <div class="large-2 columns">
+    <h1><!-- <img src="http://placehold.it/400x100&text=Logo"> -->Lunchioneer</h1>
+  </div>
+  <div class="large-10 columns">
+    <ul class="button-group right">
+      <% if user_signed_in? %>
+        <li><%= current_user.email%></li>
+        <li><%= link_to 'Edit profile', edit_user_registration_path%> </li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %> </li>
+      <% else %>
+        <li><%= link_to "Sign up", new_user_registration_path %> </li>
+        <li><%= link_to "Login", new_user_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+
+<div class = "large-10 columns">
  <% if flash.any? %>
   <div>
     <% flash.keys.each do |type| %>
       <%=flash[type] %>
     <% end %>
   </div>
-<% end %>
+ <% end %>
+</div>
 
 
-  <p class="navbar-text pull-right">
-  <% if user_signed_in? %>
-    Logged in as <strong><%= current_user.email %></strong>.
-    <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-    <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-    <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-  <% end %>
 
 <%= yield %>
 
