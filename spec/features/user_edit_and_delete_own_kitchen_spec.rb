@@ -23,4 +23,16 @@ feature "authenticated user can edit or delete kitchen" do
     expect(page).to_not have_content(kitchen.name)
     expect(page).to have_content("Create your kitchen")
   end
+
+  # scenario "user can update kitchen profile" do
+  #   user = FactoryGirl.create(:user)
+  #   kitchen = FactoryGirl.create(:kitchen, user: user)
+
+  #   sign_in_as(user)
+  #   visit user_kitchen_path(user, kitchen)
+
+  #   attach_file "Kitchen photo", Rails.root.join('spec/fixtures/img.jpg')
+  #   click_on 'Update Photo'
+  #   expect(page).to have_content("You have successfully updated your kitchen profile picture")
+  # end
 end

@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, only: [:show, :index, :edit, :update] do
-    resources :orders, only: [:index]
+  resources :users do
+    resources :orders
   end
   resources :meals do
     resources :orders
   end
 
-  resources :users, only: [:show, :index, :edit, :update] do
+  resources :users do
     resources :kitchens
   end
 
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users, only: [:index]
+    resources :users, only: [:index, :show]
   end
 
   root "welcome#index"  # The priority is based upon order of creation: first created -> highest priority.

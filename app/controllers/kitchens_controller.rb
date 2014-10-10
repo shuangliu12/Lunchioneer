@@ -62,6 +62,7 @@ class KitchensController < ApplicationController
   private
 
   def kitchen_params
+    # return {kitchen.address: nil} unless params[:kitchen_photo]
     params.require(:kitchen).permit(:kitchen_photo, :user_id, :name, :description,
       :address, :city, :state, :zipcode)
   end
