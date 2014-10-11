@@ -35,4 +35,17 @@ feature "authenticated user can edit or delete reviews" do
     click_on "delete"
     expect(page).to_not have_content(review.body)
   end
+
+
+  scenario "authorized user get an eror if use fails to fill out the review body" do
+    review = FactoryGirl.create(:review)
+
+    sign_in_as(review.user)
+    visit kitchen_path(review.kitchen)
+
+    select 4, from: "Rating"
+    click_on "Create Review"
+
+    expect(page).to have_content("Please fill out the review form correctly.")
+  end
 end
