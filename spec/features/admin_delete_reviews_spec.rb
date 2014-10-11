@@ -4,7 +4,7 @@ feature 'admin can delete reviews' do
 
   let(:admin) { FactoryGirl.create(:user, admin: true) }
 
-  scenario 'admin can delete reviews', focus:true do
+  scenario 'admin can delete reviews', do
     review = FactoryGirl.create(:review)
     kitchen = FactoryGirl.create(:kitchen)
 
