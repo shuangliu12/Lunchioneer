@@ -6,7 +6,7 @@ feature "user can search for meals based on location" do
 
     visit root_path
     fill_in("search", with: kitchen.city)
-    click_on "Search"
+    click_button "search"
 
     expect(page).to have_content(kitchen.name)
   end

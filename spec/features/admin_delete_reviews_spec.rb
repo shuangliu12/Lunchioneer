@@ -11,6 +11,7 @@ feature 'admin can delete reviews' do
     sign_in_as(admin)
 
     visit kitchen_path(review.kitchen)
+    save_and_open_page
     click_on "delete"
     expect(page).to_not have_content(review.body)
   end
