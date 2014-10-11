@@ -13,7 +13,20 @@ feature "authenticated user can edit or delete reviews" do
     expect(page).to_not have_content("delete")
   end
 
-  scenario "authorized user can edit or delete a review" do
+  scenario "authorized user can update a review" do
+    review = FactoryGirl.create(:review)
+
+    sign_in_as(review.user)
+    visit kitchen_path(review.kitchen)
+    click_on 'edit'
+
+    fill_in("Your Review", with: "good food")
+    click_on "Update Review"
+
+    expect(page).to have_content("good food")
+  end
+
+  scenario "authorized user can delete a review" do
     review = FactoryGirl.create(:review)
 
     sign_in_as(review.user)

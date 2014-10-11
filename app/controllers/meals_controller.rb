@@ -28,11 +28,10 @@ class MealsController < ApplicationController
     @meal = Meal.find(params[:id])
     if @meal.update(meal_params)
       flash[:notice] = "You have successfully updated your meal."
-      redirect_to user_kitchen_path(@meal.user, @meal.user.kitchen)
     else
       flash[:notice] = "You need to fill out the required fields."
-      render 'show'
     end
+    redirect_to user_kitchen_path(@meal.user, @meal.user.kitchen)
   end
 
     def destroy
