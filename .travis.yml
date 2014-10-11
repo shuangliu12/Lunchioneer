@@ -1,9 +1,6 @@
 language: ruby
 rvm:
-  - 2.1.0
-  - jruby-18mode
-  - jruby-19mode
-  - rbx-2
-  - ruby-head
-  - jruby-head
-  - ree
+  - 2.0.0-p481
+before_script:
+  - psql -c 'create database lunchioneer_test;' -U postgres
+

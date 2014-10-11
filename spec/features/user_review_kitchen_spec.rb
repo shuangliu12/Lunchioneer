@@ -17,7 +17,7 @@ feature "Authenticated user can leave reviews in the kitchen page" do
     expect(page).to have_button("Create Review")
   end
 
-  scenario "Authenticated user can write a review" do
+  scenario "Authenticated user can write a new review" do
     kitchen = FactoryGirl.create(:kitchen)
     user = FactoryGirl.create(:user)
     review = FactoryGirl.create(:review)
@@ -34,7 +34,7 @@ feature "Authenticated user can leave reviews in the kitchen page" do
     expect(page).to have_content(review.body)
   end
 
-  scenario "Authenticated user can write a review" do
+  scenario "Authenticated user get an error if user fails to fill out the form" do
     kitchen = FactoryGirl.create(:kitchen)
     user = FactoryGirl.create(:user)
     review = FactoryGirl.create(:review)

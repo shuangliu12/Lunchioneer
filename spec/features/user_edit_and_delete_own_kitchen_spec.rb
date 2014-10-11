@@ -13,7 +13,21 @@ feature "authenticated user can edit or delete kitchen" do
     expect(page).to_not have_content("delete")
   end
 
-  scenario "authorized user can edit or delete a kitchen" do
+  scenario "authorized user get errors if use fails to fill out the required field" do
+    kitchen = FactoryGirl.create(:kitchen)
+
+    sign_in_as(kitchen.user)
+    visit user_kitchen_path(kitchen.user, kitchen)
+
+    click_on "Edit my kitchen profile"
+
+    fill_in("Name", with: "")
+    click_on "Update Kitchen"
+
+    expect(page).to have_content("You need to fill out the required fields.")
+  end
+
+  scenario "authorized user can delete a kitchen" do
     kitchen = FactoryGirl.create(:kitchen)
 
     sign_in_as(kitchen.user)
