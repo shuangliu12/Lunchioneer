@@ -78,7 +78,7 @@
 <% if @reviews %>
   <% @reviews.each do |review|%>
     <p><%= review.user.first_name %>: <%= review.body %></p>
-    <% if review.user == current_user || current_user.is_admin? %>
+    <% if review.user == current_user %>
       <%= link_to "edit", edit_kitchen_review_path(@kitchen, review) %>
       <%= link_to "delete", kitchen_review_path(@kitchen, review), method: :delete, data: {confirm: "Are you sure?"} %>
     <% end %>

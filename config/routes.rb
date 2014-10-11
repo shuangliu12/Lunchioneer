@@ -1,39 +1,40 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users do
-    resources :orders
+  resources :users, except: [:index] do
+    resources :orders, only: [:show]
   end
+
   resources :meals, except: [:show] do
     resources :orders
   end
 
-  resources :users do
+  resources :users, except: [:index] do
     resources :kitchens
   end
 
   resources :kitchens do
-    resources :reviews
+    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
   end
 
-  resources :users do
-    resources :reviews
+  resources :users, except: [:index] do
+    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
   end
 
   namespace :admin do
-    resources :kitchens, only: [:index, :show, :edit, :update, :destroy] do
+    resources :kitchens, only: [:index, :show, :destroy] do
       resources :reviews, only: [:destroy]
     end
   end
 
   namespace :admin do
-    resources :meals, only: [:index, :show, :edit, :update, :destroy] do
-      resources :orders, only: [:index, :destroy]
+    resources :users, only: [:index] do
+      resources :kitchens, only: [:index, :show, :destory]
     end
   end
 
-  namespace :admin do
-    resources :users, only: [:index]
-  end
+  # namespace :admin do
+  #   resources :users, only: [:index]
+  # end
 
   root "welcome#index"  # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
