@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :kitchens, only: [:index, :show, :edit, :update, :destroy] do
-      resources :reviews, only: [:index, :show, :edit, :update, :destroy]
+      resources :reviews, only: [:destroy]
     end
   end
 

@@ -52,10 +52,4 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:body, :rating)
   end
-
-  # def authorize_user
-  #   unless user_signed_in? and current_user.admin?
-  #     raise ApplicationController::RoutingError.new("Not Found")
-  #   end
-  # end
 end
