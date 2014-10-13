@@ -9,6 +9,7 @@
     <%= link_to "delete", user_kitchen_path, method: :delete, data: {confirm: 'Are you sure you want to delete your kitchen?'}, class: "tiny button", class: "edit_button"%>
   </h1>
     <%= form_for @kitchen do |f| %>
+      <%= f.label :kitchen_photo %>
       <%= f.file_field :kitchen_photo %>
       <%= f.submit "Update Photo", class: "tiny button", class: "update_button"%>
     <% end %>

@@ -19,8 +19,7 @@ feature "authenticated user can edit or delete kitchen" do
     sign_in_as(kitchen.user)
     visit user_kitchen_path(kitchen.user, kitchen)
 
-    click_on "Edit my kitchen profile"
-
+    first(:link, "edit").click
     fill_in("Name", with: "")
     click_on "Update Kitchen"
 
@@ -33,7 +32,7 @@ feature "authenticated user can edit or delete kitchen" do
     sign_in_as(kitchen.user)
     visit user_kitchen_path(kitchen.user, kitchen)
 
-    click_on "Delete my kitchen"
+    first(:link,"delete").click
     expect(page).to_not have_content(kitchen.name)
     expect(page).to have_content("Create your kitchen")
   end
