@@ -1,20 +1,17 @@
-<%= image_tag @kitchen.kitchen_photo.url%>
+<div>
+  <%= image_tag @kitchen.kitchen_photo.url%>
+</div>
 
 <div class = "row">
-<div class = "large-8 large-centered columns" id = "kitchen_title">
-  <h1><%=@kitchen.name%>
-    <% if current_user == @kitchen.user %>
-    <%= link_to "edit", edit_user_kitchen_path(@kitchen.user, @kitchen), class: "tiny button", class: "edit_button"%>
+  <div class = "large-8 large-centered columns" id = "kitchen_title">
+    <h1><%=@kitchen.name%>
+      <% if current_user == @kitchen.user %>
+      <%= link_to "edit", edit_user_kitchen_path(@kitchen.user, @kitchen), class: "tiny button", class: "edit_button"%>
 
-    <%= link_to "delete", user_kitchen_path, method: :delete, data: {confirm: 'Are you sure you want to delete your kitchen?'}, class: "tiny button", class: "edit_button"%>
-  </h1>
-    <%= form_for @kitchen do |f| %>
-      <%= f.label :kitchen_photo %>
-      <%= f.file_field :kitchen_photo %>
-      <%= f.submit "Update Photo", class: "tiny button", class: "update_button"%>
+      <%= link_to "delete", user_kitchen_path, method: :delete, data: {confirm: 'Are you sure you want to delete your kitchen?'}, class: "tiny button", class: "edit_button"%>
+    </h1>
     <% end %>
-  <% end %>
-</div>
+  </div>
 </div>
 
 <div class = "row" id = "kitchen_intro" data-equalizer>
@@ -24,7 +21,11 @@
       </div>
 
       <h5>
-        Chef <%= link_to @kitchen.user.first_name, user_path(@kitchen.user)%>
+        <center>
+          <strong>
+          <%= link_to "Chef #{@kitchen.user.first_name}", user_path(@kitchen.user),class: "user" %>
+          </strong>
+      </center>
       </h5>
    </div>
 
@@ -37,39 +38,42 @@
 <hr \>
 
 <div class = "row">
-  <div class = "large-6 large-centered columns">
+  <center>
     <h2>
       Lunch Menu
     </h2>
+    <% if current_user == @kitchen.user %>
       <%= link_to "Create a new meal", new_meal_path, class: "button", class: "meal_button"%>
-  </div>
-
-<div class = "large-6 large-centered columns" >
-  <ul class = "pricing-table">
-    <% @meals.each do |meal| %>
-     <li class="price"><%= meal.name%>
-      <% if current_user == meal.user %>
-        <%= link_to "edit", edit_meal_path(meal), class: "tiny button", class: "meal_button"%>
-        <%= link_to "delete", meal_path(meal), method: :delete, data: {confirm: 'Are you sure you want to delete your meal?'}, class: "tiny button", class: "meal_button"%>
-      <% end %>
-    </li>
-        <li class="price"><%=meal.description%></li>
-        <li class="price">Portion: <%=meal.portion%></li>
-        <li class="price">Price: $<%=meal.price%></li>
-        <li class = "price">Date: <%=meal.created_at.to_date%></li>
-        <% if user_signed_in? %>
-          <% if meal.portion > 0 %>
-            <li class: "tiny button", class: "edit_button"><%= link_to "Order", meal_orders_path(meal), method: :post%></li>
-          <% else %>
-            <li class="bullet-item">Sold Out</li>
-          <% end %>
-        <% else %>
-          <p>You need to <%=link_to "log in", user_session_path%> to make an order.</p>
-        <% end %>
-      </li>
-      <% end %>
+    <% end %>
+  </center>
 </div>
+<div class = "large-6 large-centered columns">
+  <ul class="pricing-table">
+    <% @meals.each do |meal| %>
+      <li class="title" id = "table-title"> <strong><%= meal.name%></strong>
+      <% if current_user == meal.user %>
+        <%= link_to "edit", edit_meal_path(meal), class: "tiny button", class: "meal_edit" %>
+        <%= link_to "delete", meal_path(meal), method: :delete, data: {confirm: 'Are you sure you want to delete your meal?'}, class: "tiny button", class: "meal_edit"%>
+      <% end %>
+      </li>
+      <li class="description" id="des"><%=meal.description%></li>
+      <li class="bullet-item">Portion: <%=meal.portion%></li>
+      <li class="bullet-item">Price: $<%=meal.price%></li>
+      <li class="bullet-item">Date: <%=meal.created_at.to_date.strftime("%B %d, %Y")%></li>
+    <% if user_signed_in? %>
+     <% if meal.portion > 0 %>
+      <li class="bullet-item"><%= link_to "Order", meal_orders_path(meal), method: :post, class: "large button", id: "order-button"%>
+      </li>
+        <% else %>
+      <li class="bullet-item"> Sold Out </li>
+        <% end %>
+        <% else %>
+          <li class="description">You need to <%=link_to "log in", user_session_path%> to make an order.</li>
+        <% end %>
+      <% end %>
+  </ul>
   <%= paginate @meals %>
+</div>
 
 <div class = "row">
   <div class = "large-10 large-centered columns" >
@@ -112,7 +116,7 @@
             <%= image_tag review.user.profile_photo.url%>
           </span>
           <span class = "large-10 columns">
-          <strong> <%= link_to review.user.first_name, user_path(review.user) %>: </strong>
+          <strong> <%= link_to review.user.first_name, user_path(review.user) , class: "user" %> </strong>
           <%= review.body %>
             <% if review.user == current_user %>
             <%= link_to "edit", edit_kitchen_review_path(@kitchen, review),class: "button", class: "review_button" %>
@@ -121,7 +125,7 @@
             <br>
             <%review.rating.times do%> <span id="hearts"><%= "♥" %></span><% end %><%(5 - review.rating).times do%> <span id = "blank_hearts"><%= "♥" %></span><% end %>
             <br>
-              <%= review.created_at.to_date %>
+              <%= review.created_at.to_date.strftime("%B %d, %Y") %>
           </span>
           <hr \>
         </p>
