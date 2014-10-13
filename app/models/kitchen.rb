@@ -28,4 +28,8 @@ class Kitchen < ActiveRecord::Base
       0
     end
   end
+
+  def parse_date
+
+  end
 end

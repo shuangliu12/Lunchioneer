@@ -12,6 +12,6 @@ class ProfilePhotoUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    "https://s3-us-west-2.amazonaws.com/lunchioneer-development/default/profile.png"
+    "https://s3-us-west-2.amazonaws.com/lunchioneer-development/default/newprofile.png"
   end
 end

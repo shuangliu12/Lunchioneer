@@ -39,7 +39,7 @@
 <div class = "row">
   <div class = "large-6 large-centered columns">
     <h2>
-      Lunch for Tomorrow
+      Lunch Menu
     </h2>
       <%= link_to "Create a new meal", new_meal_path, class: "button", class: "meal_button"%>
   </div>
@@ -56,7 +56,7 @@
         <li class="price"><%=meal.description%></li>
         <li class="price">Portion: <%=meal.portion%></li>
         <li class="price">Price: $<%=meal.price%></li>
-        <li class = "price">Date: <%=meal.created_at%></li>
+        <li class = "price">Date: <%=meal.created_at.to_date%></li>
         <% if user_signed_in? %>
           <% if meal.portion > 0 %>
             <li class: "tiny button", class: "edit_button"><%= link_to "Order", meal_orders_path(meal), method: :post%></li>
@@ -112,14 +112,16 @@
             <%= image_tag review.user.profile_photo.url%>
           </span>
           <span class = "large-10 columns">
-          <strong> <%= review.user.first_name %>: </strong>
+          <strong> <%= link_to review.user.first_name, user_path(review.user) %>: </strong>
           <%= review.body %>
             <% if review.user == current_user %>
             <%= link_to "edit", edit_kitchen_review_path(@kitchen, review),class: "button", class: "review_button" %>
             <%= link_to "delete", kitchen_review_path(@kitchen, review), method: :delete, data: {confirm: "Are you sure?"}, class: "button", class: "review_button"%>
             <% end %>
             <br>
-              <%= review.created_at %>
+            <%review.rating.times do%> <span id="hearts"><%= "♥" %></span><% end %><%(5 - review.rating).times do%> <span id = "blank_hearts"><%= "♥" %></span><% end %>
+            <br>
+              <%= review.created_at.to_date %>
           </span>
           <hr \>
         </p>
