@@ -20,7 +20,7 @@ feature "authenticated user can edit or delete meal" do
 
     sign_in_as(meal.user)
     visit user_kitchen_path(kitchen.user, kitchen)
-    click_on "edit"
+    all(:xpath, '//a[text()="edit"]')[1].click
 
     fill_in("Name", with: "Blueberry Pie")
     fill_in("Description", with: "authentic food" )
@@ -37,7 +37,7 @@ feature "authenticated user can edit or delete meal" do
 
     sign_in_as(meal.user)
     visit user_kitchen_path(kitchen.user, kitchen)
-    click_on "edit"
+    all(:xpath, '//a[text()="edit"]')[1].click
 
     fill_in("Name", with: "")
     click_on "submit"
@@ -51,7 +51,7 @@ feature "authenticated user can edit or delete meal" do
 
     sign_in_as(meal.user)
     visit user_kitchen_path(kitchen.user, kitchen)
-    click_on "delete"
+    all(:xpath, '//a[text()="delete"]')[1].click
 
     expect(page).to_not have_content(meal.name)
   end

@@ -1,40 +1,64 @@
-<h3><%=link_to "Lunchioneer", root_path%></h3>
+<%= image_tag @kitchen.kitchen_photo.url%>
 
-  <%= image_tag @kitchen.kitchen_photo.url%>
+<div class = "row">
+<div class = "large-8 large-centered columns" id = "kitchen_title">
+  <h1><%=@kitchen.name%>
+    <% if current_user == @kitchen.user %>
+    <%= link_to "edit", edit_user_kitchen_path(@kitchen.user, @kitchen), class: "tiny button", class: "edit_button"%>
 
-<h1><%=@kitchen.name%></h1>
-<h3>Chef: <%= link_to @kitchen.user.first_name, user_path(@kitchen.user)%></h3>
-<% if current_user == @kitchen.user %>
-  <p><%= link_to "Edit my kitchen profile", edit_user_kitchen_path(@kitchen.user, @kitchen)%></p>
-  <p><%= link_to "Delete my kitchen", user_kitchen_path, method: :delete, data: {confirm: 'Are you sure you want to delete your kitchen?'}%></p>
-  <%= form_for @kitchen do |f| %>
-    <p>
-    <%= f.label :kitchen_photo %>
-    <%= f.file_field :kitchen_photo %>
-    </p>
-    <%= f.submit "Update Photo"%>
+    <%= link_to "delete", user_kitchen_path, method: :delete, data: {confirm: 'Are you sure you want to delete your kitchen?'}, class: "tiny button", class: "edit_button"%>
+  </h1>
+    <%= form_for @kitchen do |f| %>
+      <%= f.label :kitchen_photo %>
+      <%= f.file_field :kitchen_photo %>
+      <%= f.submit "Update Photo", class: "tiny button", class: "update_button"%>
+    <% end %>
   <% end %>
-<% end %>
+</div>
+</div>
 
-<p>Rating: <%= @kitchen.cal_rating%></p>
-<p>About: <%= @kitchen.description%>
-<p>Where: <%= @kitchen.address%>, <%= @kitchen.city%>, <%= @kitchen.state%>, <%= @kitchen.zipcode%></p>
+<div class = "row" id = "kitchen_intro" data-equalizer>
+    <div class = "large-2 columns" data-equalizer-watch>
+      <div class="th">
+        <%= image_tag @kitchen.user.profile_photo.url%>
+      </div>
 
-<h2>Lunch for Tomorrow</h2>
- <p><%= link_to "Create a new meal", new_meal_path%></p>
+      <h5>
+        Chef <%= link_to @kitchen.user.first_name, user_path(@kitchen.user)%>
+      </h5>
+   </div>
 
-<div class = "large-5 large-centered columns" >
+    <div class = "large-10 columns" data-equalizer-watch>
+      <p>About: <%= @kitchen.description%>
+      <p>Where: <%= @kitchen.address%>, <%= @kitchen.city%>, <%= @kitchen.state%>, <%= @kitchen.zipcode%></p>
+      <p>Rating: <%@kitchen.cal_rating.times do%> <%= "x" %><% end %></p>
+    </div>
+</div>
+
+<hr \>
+
+<div class = "row">
+  <div class = "large-6 large-centered columns">
+    <h2>
+      Lunch for Tomorrow
+    </h2>
+      <%= link_to "Create a new meal", new_meal_path%>
+  </div>
+
+
+<div class = "large-6 large-centered columns" >
   <ul class = "pricing-table">
     <% @meals.each do |meal| %>
-     <li class="title"><%= meal.name%></li>
+     <li class="title"><%= meal.name%>
       <% if current_user == meal.user %>
-        <%= link_to "edit", edit_meal_path(meal)%>
-        <%= link_to "delete", meal_path(meal), method: :delete, data: {confirm: 'Are you sure you want to delete your meal?'}%>
+        <%= link_to "edit", edit_meal_path(meal), class: "tiny button", class: "edit_button"%>
+        <%= link_to "delete", meal_path(meal), method: :delete, data: {confirm: 'Are you sure you want to delete your meal?'}, class: "tiny button", class: "edit_button"%>
       <% end %>
-        <li class="description">About: <%=meal.description%></li>
-        <li class="bullet-item">Portion: <%=meal.portion%></li>
+    </li>
+        <li class="price"><%=meal.description%></li>
+        <li class="price">Portion: <%=meal.portion%></li>
         <li class="price">Price: $<%=meal.price%></li>
-        <li class = "bullet-item">Date: <%=meal.created_at%></li>
+        <li class = "price">Date: <%=meal.created_at%></li>
         <% if user_signed_in? %>
           <% if meal.portion > 0 %>
             <li class = "cta-button"><%= link_to "Order", meal_orders_path(meal), method: :post%></li>
@@ -68,7 +92,7 @@
       <%= f.label :rating %><br>
       <%= f.select :rating, 1..5%>
     </p>
-    <%= f.submit %>
+    <%= f.submit class: "tiny button", class: "update_button"%>
   <% end %>
 
 <% else %>
@@ -77,10 +101,12 @@
 
 <% if @reviews %>
   <% @reviews.each do |review|%>
-    <p><%= review.user.first_name %>: <%= review.body %></p>
-    <% if review.user == current_user %>
-      <%= link_to "edit", edit_kitchen_review_path(@kitchen, review) %>
-      <%= link_to "delete", kitchen_review_path(@kitchen, review), method: :delete, data: {confirm: "Are you sure?"} %>
+    <p>
+      <%= review.user.first_name %>: <%= review.body %>
+      <% if review.user == current_user %>
+      <%= link_to "edit", edit_kitchen_review_path(@kitchen, review),class: "button", class: "review_button" %>
+      <%= link_to "delete", kitchen_review_path(@kitchen, review), method: :delete, data: {confirm: "Are you sure?"}, class: "button", class: "review_button"%>
+    </p>
     <% end %>
   <% end %>
 <% end %>

@@ -11,10 +11,9 @@ class MealsController < ApplicationController
     # @user = User.find(params[:user_id])
     @meal = Meal.new(meal_params)
     @meal.user = current_user
-
     if @meal.save
       flash[:notice] = "You have succesfully created a meal."
-      redirect_to meals_path
+      redirect_to user_kitchen_path(@meal.user, @meal.user.kitchen)
     else
       render 'new'
     end
