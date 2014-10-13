@@ -50,3 +50,19 @@
   font-size: 0.8em;
   padding: 3px;
 }
+
+#hearts{
+  color: tomato;
+}
+
+#blank_hearts{
+  color: #F5DEB3  ;
+}
+
+.meal_button{
+  background-color: none;
+  color: tomato;
+  text-align: center;
+  font-size: 1em;
+  padding: 3px;
+}
