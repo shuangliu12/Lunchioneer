@@ -15,4 +15,11 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def authorized_user!
+    if current_user.nil?
+      flash[:warning] = "Invalid Request"
+      redirect_to root_path
+    end
+  end
 end
