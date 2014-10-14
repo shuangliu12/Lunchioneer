@@ -42,10 +42,12 @@ feature "authenticated user can edit or delete kitchen" do
     kitchen = FactoryGirl.create(:kitchen, user: user)
 
     sign_in_as(user)
-    visit user_kitchen_path(user, kitchen)
+    visit edit_user_kitchen_path(user, kitchen)
 
+    fill_in("Name", with: "Irish")
     attach_file "Kitchen photo", Rails.root.join('spec/fixtures/img.jpg')
-    click_on 'Update Photo'
+    click_on 'Update Kitchen'
+    expect(page).to have_content("Irish")
     expect(page).to have_content("You have successfully updated your kitchen profile")
   end
 end
