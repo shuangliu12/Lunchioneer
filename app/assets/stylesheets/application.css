@@ -10,12 +10,29 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require foundation
+
  *= require_tree .
  *= require_self
  *= require foundation_and_overrides
 
  */
-/*= require foundation */
-.button-group > li{
-  padding-right: 10px;
+
+.title {
+  margin-left: 20px;
+  color: white;
+}
+
+.title:hover {
+  color: white;
+}
+
+#login {
+  color: white;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+.top-bar {
+  background-color: white;
 }

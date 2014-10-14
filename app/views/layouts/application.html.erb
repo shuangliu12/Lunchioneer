@@ -8,23 +8,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="row">
-  <div class="large-3 columns">
-    <h4><%= link_to "Meet & Lunch", root_path %></h4>
-  </div>
-  <div class="large-9 columns">
-    <ul class="button-group right">
-      <% if user_signed_in? %>
-        <li><%= current_user.email%></li>
-        <li><%= link_to 'Edit profile', edit_user_registration_path%> </li>
-        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %> </li>
+
+<nav class = "top-bar" data-topbar class="n">
+  <ul class = "title-area">
+    <li class = "name">
+      <h4>
+        <%=link_to "Meet & Lunch", root_path, class: "title" %>
+      </h4>
+  </li>
+
+  <section class="top-bar-section">
+    <ul class = "right" >
+      <li class = "divider"><li>
+        <li class = "has-dropdown", id="login">
+          <% if user_signed_in? %>
+          <%= link_to current_user.email, user_path(current_user) %>
+          <ul class = "dropdown" >
+            <li><%= link_to 'Edit profile', edit_user_registration_path%></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+          </ul>
+       </li>
+        <% if current_user.kitchen %>
+        <li><%= link_to "I am a Chef", user_kitchen_path(current_user, current_user.kitchen) %></li>
+            <% end %>
       <% else %>
         <li><%= link_to "Sign up", new_user_registration_path %> </li>
         <li><%= link_to "Login", new_user_session_path %></li>
       <% end %>
     </ul>
-  </div>
-</div>
+  </section>
+</nav>
 
 
 <div class = "container">
@@ -37,8 +50,6 @@
   </div>
  <% end %>
 </div>
-
-
 
 <%= yield %>
 

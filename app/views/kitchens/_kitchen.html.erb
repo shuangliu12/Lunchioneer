@@ -1,5 +1,5 @@
 <div class = "row">
-  <div class = "large-5 large_centered columns">
+<div class = "large-6 columns">
 
 <%= form_for [@kitchen.user, @kitchen] do |f| %>
   <% if @kitchen.errors.any? %>
@@ -33,8 +33,8 @@
     <%= f.label :kitchen_photo %>
     <%= f.file_field :kitchen_photo%><br>
 
-    <%= f.submit%>
+    <%= f.submit class: "create_button"%>
+    <%=link_to "cancel", user_path(current_user), class: "create_button" %>
   <% end %>
-<%=link_to "cancel", user_path(current_user)%>
 </div>
 </div>

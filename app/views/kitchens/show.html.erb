@@ -59,7 +59,7 @@
       <li class="description" id="des"><%=meal.description%></li>
       <li class="bullet-item">Portion: <%=meal.portion%></li>
       <li class="bullet-item">Price: $<%=meal.price%></li>
-      <li class="bullet-item">Date: <%=meal.created_at.to_date.strftime("%B %d, %Y")%></li>
+      <li class="bullet-item">Date: <%=meal.meal_date.to_date.strftime("%B %d, %Y")%></li>
     <% if user_signed_in? %>
      <% if meal.portion > 0 %>
       <li class="bullet-item"><%= link_to "Order", meal_orders_path(meal), method: :post, class: "large button", id: "order-button"%>
