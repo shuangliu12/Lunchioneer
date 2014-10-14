@@ -19,18 +19,20 @@
 
   <section class="top-bar-section">
     <ul class = "right" >
-      <li class = "divider"><li>
+      <% if user_signed_in? %>
+      <% if current_user.kitchen %>
+        <li><%= link_to "I am a Chef", user_kitchen_path(current_user, current_user.kitchen) %></li>
+      <% end %>
+     <!--  <li class = "divider"><li> -->
         <li class = "has-dropdown", id="login">
-          <% if user_signed_in? %>
+
           <%= link_to current_user.email, user_path(current_user) %>
           <ul class = "dropdown" >
             <li><%= link_to 'Edit profile', edit_user_registration_path%></li>
             <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
           </ul>
        </li>
-        <% if current_user.kitchen %>
-        <li><%= link_to "I am a Chef", user_kitchen_path(current_user, current_user.kitchen) %></li>
-            <% end %>
+
       <% else %>
         <li><%= link_to "Sign up", new_user_registration_path %> </li>
         <li><%= link_to "Login", new_user_session_path %></li>

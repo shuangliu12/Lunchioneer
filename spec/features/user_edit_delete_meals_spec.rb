@@ -26,6 +26,7 @@ feature "authenticated user can edit or delete meal" do
     fill_in("Description", with: "authentic food" )
     fill_in("Price", with: 3)
     fill_in("Portion", with: 3)
+    fill_in("Meal date", with: meal.date)
 
     click_on "submit"
     expect(page).to have_content("Blueberry")

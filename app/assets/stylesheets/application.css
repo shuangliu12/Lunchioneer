@@ -33,6 +33,13 @@
   margin-left: 30px;
 }
 
-.top-bar {
-  background-color: white;
+.top-bar-section > ul > .divider{
+  border-right: 1px solid white;
+}
+
+.top-bar, .top-bar-section li:not(.has-form) a:not(.button),
+.top-bar-section .dropdown li:not(.has-form):not(.active) > a:not(.button),
+.top-bar, .top-bar-section li:not(.has-form) a:not(.button):hover
+ {
+  background-color: tomato;
 }

@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "authenticated user can create a meal" do
-  scenario "authenticated user can create a meal" do
+  scenario "authenticated user can create a meal", focus: true do
     user = FactoryGirl.create(:user)
     kitchen = FactoryGirl.create(:kitchen, user: user)
     meal = FactoryGirl.create(:meal, user: user)
@@ -13,8 +13,10 @@ feature "authenticated user can create a meal" do
     fill_in("Description", with: "authentic food" )
     fill_in("Price", with: meal.price)
     fill_in("Portion", with: meal.portion)
+    select_date(DateTime.now, from: "Select Date")
 
-    click_on "submit"
+    save_and_open_page
+    click_on "Create Meal"
     expect(page).to have_content("You have succesfully created a meal.")
   end
 
