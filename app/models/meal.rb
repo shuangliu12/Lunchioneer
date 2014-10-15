@@ -2,6 +2,7 @@ class Meal < ActiveRecord::Base
   validates :name, presence:true
   validates :price, presence:true
   validates :portion, presence:true
+  validates :meal_date, presence: true
 
   belongs_to :user
   has_many :orders, dependent: :destroy

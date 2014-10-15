@@ -13,7 +13,7 @@ class KitchensController < ApplicationController
     @kitchen = Kitchen.find(params[:id])
     @meals = @kitchen.user.meals.order(:created_at).page(params[:page]).per(1)
     @review = Review.new
-    @reviews = Review.where(kitchen: @kitchen)
+    @reviews = Review.where(kitchen: @kitchen).order("created_at desc")
   end
 
   def new

@@ -9,23 +9,24 @@
 </head>
 <body>
 
-<nav class = "top-bar" data-topbar class="n">
+<nav class = "top-bar" data-topbar>
   <ul class = "title-area">
     <li class = "name">
       <h4>
-        <%=link_to "Meet & Lunch", root_path, class: "title" %>
+        <strong> <%=link_to "Meet & Lunch", root_path, class: "title" %></strong>
       </h4>
-  </li>
+    </li>
+  </ul>
 
   <section class="top-bar-section">
     <ul class = "right" >
       <% if user_signed_in? %>
-      <% if current_user.kitchen %>
-        <li><%= link_to "I am a Chef", user_kitchen_path(current_user, current_user.kitchen) %></li>
-      <% end %>
-     <!--  <li class = "divider"><li> -->
-        <li class = "has-dropdown", id="login">
-
+        <% if current_user.kitchen %>
+          <li>
+            <%= link_to "I am a Chef", user_kitchen_path(current_user, current_user.kitchen) %>
+          </li>
+        <% end %>
+        <li class = "has-dropdown">
           <%= link_to current_user.email, user_path(current_user) %>
           <ul class = "dropdown" >
             <li><%= link_to 'Edit profile', edit_user_registration_path%></li>
