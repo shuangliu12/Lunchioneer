@@ -11,24 +11,43 @@
 </ul>
 
 <div class = "row">
-  <div class = "large-8 large-centered columns" id = "search-bar">
-      <%= form_tag kitchens_path, method: :get do %>
+  <div class = "large-8 large-centered columns">
+    <%= form_tag kitchens_path, method: :get do %>
       <div class = "row collapse" >
         <div class = "small-10 columns">
           <%= text_field_tag :search, params[:search], placeholder: "enter your city" %>
-      </div>
-        <div class = "small-2 columns">
-          <button class ="tiny button" id="search_button" ><%= "search"%></button>
         </div>
-    </div>
+
+        <div class = "small-2 columns">
+          <button class ="tiny button" id="search_button" ><%= "search kitchens" %></button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class = "row">
+  <div class = "large-8 large-centered columns">
+    <%= form_tag meals_path, method: :get do %>
+      <div class = "row collapse" >
+        <div class = "small-10 columns">
+          <%= date_select :date_search, params[:date_search] %>
+        </div>
+
+        <div class = "small-2 columns">
+          <button class ="tiny button" id="search_button" ><%= "search meals"%></button>
+        </div>
+      </div>
    <% end %>
   </div>
 </div>
 
 
+
+
 <div class="row" data-equalizer>
   <div class="large-3 columns" data-equalizer-watch>
-      <%= image_tag @kitchens.find(1).kitchen_photo.url %>
+
   </div>
 
   <div class="large-6 columns panel" data-equalizer-watch>

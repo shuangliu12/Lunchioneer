@@ -10,3 +10,12 @@
 .link:hover{
   color: #b0764e;
 }
+
+.default_link a{
+  color: black;
+}
+
+.default_link {
+  margin: 0 10px;
+}
+

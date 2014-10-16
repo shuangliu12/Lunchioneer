@@ -17,23 +17,21 @@
  *= require foundation_and_overrides
 
  */
-
- nav {
-  font-family: Lucida Handwriting;
-  z-index: 3;
+nav > .top-bar{
+  z-index: 2;
+  position: fixed;
 }
 
 .title {
   margin-left: 20px;
-  color: white;
-  font-family: Lucida Handwriting;
-  font-size: 1em;
-  color: white;
- /* font-family: Marker felt;*/
+/*  font-family: Lucida Handwriting;*/
+  font-size: 1.2em;
+  color: #1e1645;
+  font-family: Marker felt;
 }
 
 .title:hover {
-  color: #ffda8a;
+  color: tomato;
 }
 
 .top-bar,.top-bar:hover, .top-bar-section li:not(.has-form) a:not(.button),
@@ -41,8 +39,8 @@
 .top-bar-section li:not(.has-form) a:not(.button):hover,
 .top-bar-section .dropdown li:not(.has-form):not(.active) > a:not(.button):hover
  {
-  background-color: #908070;
-  color: #ffda8a;
+  background-color: white;
+  color: #1e1645;
 /*  font-weight: bold;*/
   font-size: 1em;
   font-family: Marker felt;

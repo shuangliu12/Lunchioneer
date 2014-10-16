@@ -1,7 +1,7 @@
 class Meal < ActiveRecord::Base
-  validates :name, presence:true
-  validates :price, presence:true
-  validates :portion, presence:true
+  validates :name, presence:true, length: { maximum: 255 }
+  validates :price, presence:true, numericality: { only_integer: true }
+  validates :portion, presence:true, numericality: { only_integer: true, greater_than_or_equal_to: 0}
   validates :meal_date, presence: true
 
   belongs_to :user

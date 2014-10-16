@@ -26,9 +26,11 @@ feature "authenticated user can edit or delete meal" do
     fill_in("Description", with: "authentic food" )
     fill_in("Price", with: 3)
     fill_in("Portion", with: 3)
-    fill_in("Meal date", with: meal.date)
+    select '2011', from: "meal_meal_date_1i"
+    select 'October', from: "meal_meal_date_2i"
+    select '15', from: "meal_meal_date_3i"
 
-    click_on "submit"
+    click_on "Update Meal"
     expect(page).to have_content("Blueberry")
   end
 
@@ -41,7 +43,7 @@ feature "authenticated user can edit or delete meal" do
     all(:xpath, '//a[text()="edit"]')[1].click
 
     fill_in("Name", with: "")
-    click_on "submit"
+    click_on "Update Meal"
 
     expect(page).to have_content("You need to fill out the required fields.")
   end
