@@ -12,7 +12,7 @@ if Rails.env.production? || Rails.env.development?
   end
 
   def default_url
-    "https://s3-us-west-2.amazonaws.com/lunchioneer-development/1.jpg"
+    "https://s3-us-west-2.amazonaws.com/lunchioneer-development/default/defaultbg.jpg"
   end
 
 end

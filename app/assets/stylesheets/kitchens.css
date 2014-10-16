@@ -1,3 +1,7 @@
+.img{
+  width: 100%;
+}
+
 #kitchen_title{
   display: inline-block;
 }
@@ -24,14 +28,21 @@
     padding: 3px;
 }
 
-.update_button{
+.update_button, .create_button{
   background-color: white;
   color: black;
   border: 1px #1e1645 solid;
   outline: 0;
 }
 
-.update_button:hover{
+.create_button {
+  padding: 5px;
+  font-size: 20px;
+  margin-right: 10px;
+  padding:10px;
+}
+
+.update_button:hover, .create_button:hover{
   background-color: #1e1645;
   color: white;
 }
@@ -50,3 +61,57 @@
   font-size: 0.8em;
   padding: 3px;
 }
+
+#hearts{
+  color: tomato;
+}
+
+#blank_hearts{
+  color: #F5DEB3  ;
+}
+
+.meal_button{
+  background-color: none;
+  color: tomato;
+  text-align: center;
+  padding: 3px;
+}
+
+.meal_button:hover{
+  background-color: #f3726c;
+  color: white;
+}
+
+.meal_edit {
+  font-size: 0.8em;
+  color: white;
+}
+
+.user,.user:hover {
+  color: tomato;
+}
+
+.pricing-table > .title{
+  padding: 30px;
+}
+
+#order-button{
+  background-color: #72c5a7;
+  color: #ffda8a;
+  padding: 15px;
+}
+
+#order-button:hover{
+  color: #72c5a7;
+  background-color: #ffda8a;
+  padding: 15px;
+}
+
+#table-title {
+  background-color: #f3726c;
+  color: white;
+  font-size: 20px;
+}
+
+
+

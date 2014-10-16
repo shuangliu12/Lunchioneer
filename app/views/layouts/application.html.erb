@@ -4,26 +4,43 @@
   <title>Meet & Lunch</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag "vendor/modernizr" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="row">
-  <div class="large-3 columns">
-    <h4>Meet & Lunch</h4>
-  </div>
-  <div class="large-9 columns">
-    <ul class="button-group right">
+
+<nav class = "top-bar" data-topbar>
+  <ul class = "title-area">
+    <li class = "name">
+      <h4>
+        <strong> <%=link_to "Meet & Lunch", root_path, class: "title" %></strong>
+      </h4>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">
+    <ul class = "right" >
       <% if user_signed_in? %>
-        <li><%= current_user.email%></li>
-        <li><%= link_to 'Edit profile', edit_user_registration_path%> </li>
-        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %> </li>
+        <% if current_user.kitchen%>
+          <li>
+            <%= link_to "I am a Chef", user_kitchen_path(current_user, current_user.kitchen) %>
+          </li>
+        <% end %>
+        <li class = "has-dropdown">
+          <%= link_to current_user.email, user_path(current_user) %>
+          <ul class = "dropdown" >
+            <li><%= link_to 'Edit profile', edit_user_registration_path%></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+          </ul>
+       </li>
+
       <% else %>
         <li><%= link_to "Sign up", new_user_registration_path %> </li>
         <li><%= link_to "Login", new_user_session_path %></li>
       <% end %>
     </ul>
-  </div>
-</div>
+  </section>
+</nav>
 
 
 <div class = "container">
@@ -36,8 +53,6 @@
   </div>
  <% end %>
 </div>
-
-
 
 <%= yield %>
 

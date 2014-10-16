@@ -2,8 +2,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @orders = @user.orders
-    @meals = Meal.where(user: @user)
+    @orders = @user.orders.order("created_at DESC")
+    @meals = Meal.where(user: @user).order("created_at DESC")
+    @reviews = @user.reviews.order("created_at DESC")
   end
 
   def update

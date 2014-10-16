@@ -1,0 +1,16 @@
+#search_button {
+  background-color: #72c5a7;
+  color: #ffda8a;
+  font-size: 15px;
+  margin-left: 20px;
+  font-family: Lucida Handwriting;
+}
+
+.search-bar {
+  z-index: 5;
+  margin-top: -300px;
+}
+
+#slides{
+  z-index: 1;
+}

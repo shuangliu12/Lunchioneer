@@ -1,4 +1,4 @@
-
+<div class = "large-6 columns">
 <%= form_for @meal do |f| %>
   <% if @meal.errors.any? %>
       <div id="error_explanation">
@@ -34,7 +34,14 @@
     <%= f.text_field :portion %>
   </p>
 
-  <%= f.submit "submit"%>
+  <p>
+    <%= f.label :meal_date, "Select Date" %>
+    <%= f.date_select :meal_date %>
+  </p>
+
+  <%= f.submit class: "create_button"%>
+  <%=link_to "cancel", user_path(current_user), class: "create_button" %>
   <% end %>
+</div>
 
 

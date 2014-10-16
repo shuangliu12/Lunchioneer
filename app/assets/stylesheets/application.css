@@ -10,12 +10,40 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require foundation
+
  *= require_tree .
  *= require_self
  *= require foundation_and_overrides
 
  */
-/*= require foundation */
-.button-group > li{
-  padding-right: 10px;
+nav > .top-bar{
+  z-index: 2;
+  position: fixed;
 }
+
+.title {
+  margin-left: 20px;
+/*  font-family: Lucida Handwriting;*/
+  font-size: 1.2em;
+  color: #1e1645;
+  font-family: Marker felt;
+}
+
+.title:hover {
+  color: tomato;
+}
+
+.top-bar,.top-bar:hover, .top-bar-section li:not(.has-form) a:not(.button),
+.top-bar-section .dropdown li:not(.has-form):not(.active) > a:not(.button),
+.top-bar-section li:not(.has-form) a:not(.button):hover,
+.top-bar-section .dropdown li:not(.has-form):not(.active) > a:not(.button):hover
+ {
+  background-color: white;
+  color: #1e1645;
+/*  font-weight: bold;*/
+  font-size: 1em;
+  font-family: Marker felt;
+}
+
+

@@ -1,66 +1,106 @@
-<h1><%= @user.first_name%>'s profile</h1>
+<hr \>
+<center>
+  <h1><%= @user.username%>'s profile</h1>
+</center>
 
 <div class = "row">
-  <div class = "large-3 columns">
+  <div class = "large-4 columns">
     <div class="th">
       <%= image_tag @user.profile_photo.url %>
     </div>
-  <%= @user.username %>
+    <h3><center><%= @user.username %></center><h3>
+    <% if @user == current_user %>
+      <%= form_for @user do |f| %>
+        <p>
+        <%= f.label :profile_photo %>
+        <%= f.file_field :profile_photo %>
+        </p>
+        <%= f.submit "Update Photo", class: "update_button" %>
+      <% end %>
+    <% end %>
+    <br>
+    <% if @user.kitchen.nil? %>
+      <h3>
+        <center><%=link_to "Create your kitchen", new_user_kitchen_path(@user, @user.kitchen), class: "link"%></center>
+      </h3>
+    <%else%>
+      <h3>
+        <center><%= link_to @user.kitchen.name, user_kitchen_path(@user, @user.kitchen), class: "link"%></center>
+      </h3>
+    <% end %>
+ </div>
+
+  <div class = "large-8 columns">
+    <dl class = "tabs" data-tab>
+      <dd class = "active"><a href="#panel1" class="link">Order History</a></dd>
+      <dd><a href="#panel2" class="link">My Meals</a></dd>
+      <dd><a href="#panel3" class="link">My Reviews</a></dd>
+    </dl>
+
+    <div class="tabs-content">
+      <div class = "content active" id="panel1">
+        <ul class = "list">
+          <% @orders.each do |order|%>
+            <li class="panel">
+              <% if order.meal%>
+                <p>
+                  <strong>
+                    <%= order.meal.name %>
+                  </strong>
+                   ($<%= order.meal.price %>.00)</p>
+                <% if order.meal.user%>
+                <p>by: Chef <%= link_to order.meal.user.first_name, user_path(order.meal.user), class: "link"%></p>
+                <% else %>
+                <p>This chef does not exist anymore.</p>
+                <% end %>
+                <% if order.meal.user.kitchen %>
+                   From <%=link_to order.meal.user.kitchen.name, user_kitchen_path(order.meal.user, order.meal.user.kitchen), class: "link"%>
+                <% else %>
+                  This kitchen does not exist anymore.
+                <% end %>
+                  </p>
+              <% else%>
+                <p>This meal was deleted.</p>
+              <% end %>
+                <p><%= order.created_at.strftime("%B %d, %Y")%></p>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+
+    <div class="content" id="panel2">
+      <ul class="list">
+        <% @meals.each do |meal| %>
+         <li class="panel">
+          <p>
+            <strong><%=meal.name%></strong>
+          </p>
+          <p>About: <%=meal.description%></p>
+          <p>Portion: <%=meal.portion%></p>
+          <p>Price: $<%=meal.price%></p>
+          <p>Lunch Date: <%=meal.meal_date.strftime("%B %d, %Y")%></p>
+        </li>
+        <% end %>
+      </div>
+
+    <div class = "content" id = "panel3">
+      <ul class = "list">
+        <% @reviews.each do |review| %>
+          <li class = "panel">
+            <p>
+              <strong><%= link_to review.kitchen.name, user_kitchen_path(review.kitchen, review.kitchen.user), class: "link"%></strong>
+            </p>
+            <p>
+              <%= review.body %>
+            </p>
+            <p>
+              <%= review.created_at.strftime("%B %d, %Y")%>
+            </p>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
-
-<% if @user == current_user %>
-  <%= form_for @user do |f| %>
-    <p>
-    <%= f.label :profile_photo %>
-    <%= f.file_field :profile_photo %>
-    </p>
-    <%= f.submit "Update Photo"%>
-  <% end %>
-<% end %>
-
-
-<% if @user.kitchen.nil? %>
-  <h2><%=link_to "Create your kitchen", new_user_kitchen_path(@user, @user.kitchen)%></h2>
-<%else%>
- <h2> <%= link_to @user.kitchen.name, user_kitchen_path(@user, @user.kitchen)%></h2>
-<% end %>
-
-<h2>My Order History</h2>
-
-<ul>
-  <% @orders.each do |order|%>
-    <li>
-      <% if order.meal%>
-        <p>Food: <%= order.meal.name%>
-        <% if order.meal.user%>
-        by: Chef <%= link_to order.meal.user.first_name, user_path(order.meal.user)%>
-        <% else %>
-        This chef does not exist anymore.
-        <% end %>
-        <% if order.meal.user.kitchen %>
-           From <%=link_to order.meal.user.kitchen.name, user_kitchen_path(order.meal.user, order.meal.user.kitchen)%>
-        <% else %>
-          This kitchen does not exist anymore.
-        <% end %>
-          </p>
-      <% else%>
-        <p>This meal was deleted.</p>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
-
-
-<h2>My Meals</h2>
-<ul>
-  <% @meals.each do |meal| %>
-   <li>
-    <p><%=meal.name%></p>
-    <p>About: <%=meal.description%></p>
-    <p>Portion: <%=meal.portion%></p>
-    <p>Price: $<%=meal.price%></p>
-    <p>Date: <%=meal.created_at%></p>
-  </li>
-  <% end %>
 

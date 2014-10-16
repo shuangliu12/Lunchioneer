@@ -1,22 +1,92 @@
-<div class = "row" >
-  <div class = "large-5 large-centered columns">
-      <%= form_tag kitchens_path, method: :get do %>
-      <div class = "row collapse">
+<ul class="example-orbit" data-orbit class = "slides">
+  <li class="active" class = "slides">
+    <%= image_tag "2.jpg" %>
+  </li>
+  <li class="active" class = "slides" >
+    <%= image_tag "1.jpg" %>
+  </li>
+  <li class="active" class = "slides">
+    <%= image_tag "3.jpg" %>
+  </li>
+</ul>
+
+<div class = "row">
+  <div class = "large-8 large-centered columns">
+    <%= form_tag kitchens_path, method: :get do %>
+      <div class = "row collapse" >
         <div class = "small-10 columns">
           <%= text_field_tag :search, params[:search], placeholder: "enter your city" %>
-      </div>
-        <div class = "small-2 columns">
-          <button class ="tiny button"><%= "search" %></button>
         </div>
-    </div>
+
+        <div class = "small-2 columns">
+          <button class ="tiny button" id="search_button" ><%= "search kitchens" %></button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class = "row">
+  <div class = "large-8 large-centered columns">
+    <%= form_tag meals_path, method: :get do %>
+      <div class = "row collapse" >
+        <div class = "small-10 columns">
+          <%= date_select :date_search, params[:date_search] %>
+        </div>
+
+        <div class = "small-2 columns">
+          <button class ="tiny button" id="search_button" ><%= "search meals"%></button>
+        </div>
+      </div>
    <% end %>
   </div>
 </div>
 
-<% if current_user %>
-  <% if current_user.kitchen %>
-    <%= link_to "I am a Chef", user_kitchen_path(current_user, current_user.kitchen) %>
-  <% end %>
-  <%= link_to "My profile", user_path(current_user) %>
-<% end %>
+
+
+
+<div class="row" data-equalizer>
+  <div class="large-3 columns" data-equalizer-watch>
+
+  </div>
+
+  <div class="large-6 columns panel" data-equalizer-watch>
+    <div class="panel">
+      <h5>Panel Title</h5>
+      <p>This is a six columns grid panel with an arbitrary height. Bacon ipsum dolor sit amet salami ham hock biltong ball tip drumstick sirloin pancetta meatball short loin.</p>
+    </div>
+  </div>
+  <div class="large-3 columns panel" data-equalizer-watch>
+    <div class="">
+      <h5>Panel Title</h5>
+      <p>This is a three columns grid panel with an arbitrary height.</p>
+    </div>
+  </div>
+</div>
+
+
+  <div class="row">
+
+    <div class="large-6 columns">
+      <div class="panel">
+        <h5>Panel Title</h5>
+        <p>This is a six columns grid panel with an arbitrary height. Bacon ipsum dolor sit amet salami ham hock biltong ball tip drumstick sirloin pancetta meatball short loin.</p>
+      </div>
+    </div>
+    <div class="large-2 columns">
+      <div class="panel">
+        <p>
+          <img src="http://placehold.it/200x200"/>
+        </p>
+      </div>
+    </div>
+    <div class="large-4 columns">
+      <div class="panel">
+        <h5>Panel Title</h5>
+        <p>This is a four columns grid panel with an arbitrary height. Bacon ipsum dolor sit amet salami.</p>
+      </div>
+    </div>
+
+  </div>
+
 

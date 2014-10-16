@@ -1,7 +1,9 @@
 class KitchensController < ApplicationController
+  before_action :authorize_user!, only: [:new, :create, :edit, :update, :destroy]
+
   def index
     if params[:search]
-      @kitchens = Kitchen.search(params[:search]).page params[:page]
+      @kitchens = Kitchen.search(params[:search])
     else
       @kitchens = Kitchen.includes(:user)
     end
@@ -11,7 +13,7 @@ class KitchensController < ApplicationController
     @kitchen = Kitchen.find(params[:id])
     @meals = @kitchen.user.meals.order(:created_at).page(params[:page]).per(1)
     @review = Review.new
-    @reviews = Review.where(kitchen: @kitchen)
+    @reviews = Review.where(kitchen: @kitchen).order("created_at desc")
   end
 
   def new
