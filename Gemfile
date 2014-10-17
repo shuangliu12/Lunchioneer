@@ -16,6 +16,9 @@ gem "font-awesome-rails"
 #gem 'mandrill-api'
 gem 'rails_12factor', group: :production
 gem 'kaminari'
+gem 'faker'
+gem 'populator'
+
 
 group :test do
   gem 'coveralls', require: false
@@ -32,7 +35,5 @@ group :development, :test do
   gem 'factory_girl_rails'
   #gem 'email_spec'
   gem 'dotenv-rails'
-  gem 'faker'
-  gem 'populator'
 end
 

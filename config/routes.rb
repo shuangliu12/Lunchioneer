@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   get 'search' => 'search#index'
 
+  get 'welcome/about'
 
   # namespace :admin do
   #   resources :users, only: [:index]

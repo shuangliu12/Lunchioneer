@@ -1,0 +1,15 @@
+<hr \>
+
+<div class = "large-4 columns">
+  <%= form_for @user do |f| %>
+    <p>
+    <%= f.label :description, "about me" %>
+    <%= f.text_field :description %>
+
+    <%= f.label :profile_photo %>
+    <%= f.file_field :profile_photo %>
+    </p>
+    <%= f.submit "Update", class: "update_button" %>
+  <% end %>
+</div>
+

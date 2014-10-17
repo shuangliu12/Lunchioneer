@@ -68,7 +68,7 @@
       <li class="bullet-item"> Sold Out </li>
         <% end %>
         <% else %>
-          <li class="description">You need to <%=link_to "log in", user_session_path%> to make an order.</li>
+          <li class="description">You need to <%=link_to "log in", user_session_path, class: "link"%> to make an order.</li>
         <% end %>
       <% end %>
   </ul>
@@ -101,7 +101,7 @@
   <% end %>
 
 <% else %>
-  <p>Please <%=link_to "sign in", user_session_path%>  to leave a review.</p>
+  <p>Please <%=link_to "sign in", user_session_path, class: "link"%>  to leave a review.</p>
 <% end %>
 </div>
 </div>
