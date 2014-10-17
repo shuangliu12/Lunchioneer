@@ -8,17 +8,16 @@
     <div class="th">
       <%= image_tag @user.profile_photo.url %>
     </div>
-    <h3><center><%= @user.username %></center><h3>
-    <% if @user == current_user %>
-      <%= form_for @user do |f| %>
-        <p>
-        <%= f.label :profile_photo %>
-        <%= f.file_field :profile_photo %>
-        </p>
-        <%= f.submit "Update Photo", class: "update_button" %>
-      <% end %>
-    <% end %>
-    <br>
+    <h3><center><%= @user.username %>
+        <% if @user == current_user %>
+        <%= link_to "edit", edit_user_path(@user), class: "review_button" %>
+        <% end %>
+        </center>
+    </h3>
+
+    <div class = "panel">
+      <%= current_user.description %>
+    </div>
 
     <% if @user.kitchen.nil? %>
       <h3>
