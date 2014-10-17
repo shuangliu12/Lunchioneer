@@ -3,9 +3,9 @@ feature "user can update own profile picture" do
   scenario "user can update own profile picture" do
     user = FactoryGirl.create(:user)
     sign_in_as(user)
-    visit user_path(user)
+    visit edit_user_path(user)
     attach_file "Profile photo", Rails.root.join('spec/fixtures/img.jpg')
-    click_on 'Update Photo'
-    expect(page).to have_content("You have successfully updated your profile picture")
+    click_on 'Update'
+    expect(page).to have_content("You have successfully updated")
   end
 end
