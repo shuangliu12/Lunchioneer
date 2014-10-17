@@ -7,11 +7,15 @@ class UsersController < ApplicationController
     @reviews = @user.reviews.order("created_at DESC")
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
   def update
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      flash[:success] = "You have successfully updated your profile picture."
+      flash[:success] = "You have successfully updated your profile."
       redirect_to user_path(@user)
     # else
     #   flash[:alert] = "You need to submit a photo."
@@ -22,6 +26,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:profile_photo, :email)
+    params.require(:user).permit(:profile_photo, :email, :description)
   end
 end
