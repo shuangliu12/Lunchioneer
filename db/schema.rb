@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20141017141951) do
     t.string   "username",                               null: false
     t.string   "first_name",                             null: false
     t.boolean  "admin",                  default: false
-    t.text     "description"
+    t.text     "description",            default: ""
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

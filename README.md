@@ -4,4 +4,8 @@ Meet & Lunch
 
 ![alt tag](app/assets/images/lunch.jpg)
 
+Try me: meetandlunch.herokuapp.com
+
+
+
 
