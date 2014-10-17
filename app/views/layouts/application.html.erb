@@ -21,7 +21,7 @@
   <section class="top-bar-section">
     <ul class = "right" >
       <% if user_signed_in? %>
-        <% if current_user.kitchen%>
+        <% if current_user.kitchen == true %>
           <li>
             <%= link_to "I am a Chef", user_kitchen_path(current_user, current_user.kitchen) %>
           </li>

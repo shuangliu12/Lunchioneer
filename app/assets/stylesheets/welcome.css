@@ -6,7 +6,7 @@
   font-family: Lucida Handwriting;
 }
 
-.search-bar {
+#search-bar {
   z-index: 5;
   margin-top: -300px;
 }
