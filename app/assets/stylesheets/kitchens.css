@@ -95,13 +95,13 @@
   padding: 30px;
 }
 
-#order-button{
+.order-button{
   background-color: #72c5a7;
   color: #ffda8a;
   padding: 15px;
 }
 
-#order-button:hover{
+.order-button:hover{
   color: #72c5a7;
   background-color: #ffda8a;
   padding: 15px;

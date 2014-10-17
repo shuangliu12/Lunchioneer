@@ -6,7 +6,7 @@
   font-family: Lucida Handwriting;
 }
 
-.search-bar {
+#search-bar {
   z-index: 5;
   margin-top: -300px;
 }
@@ -14,3 +14,17 @@
 #slides{
   z-index: 1;
 }
+
+.footer_link a {
+  color: #1e1645;
+  padding: 5px;
+  font-family: Marker felt
+}
+
+.footer_link a:hover {
+  background-color: #1e1645;
+  color: white;
+  padding: 5px;
+}
+
+

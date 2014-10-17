@@ -19,16 +19,17 @@
       <% end %>
     <% end %>
     <br>
+
     <% if @user.kitchen.nil? %>
       <h3>
-        <center><%=link_to "Create your kitchen", new_user_kitchen_path(@user, @user.kitchen), class: "link"%></center>
+        <%=link_to "Create your kitchen", new_user_kitchen_path(@user, @user.kitchen), class: "order-button"%>
       </h3>
     <%else%>
       <h3>
-        <center><%= link_to @user.kitchen.name, user_kitchen_path(@user, @user.kitchen), class: "link"%></center>
+        <%= link_to @user.kitchen.name, user_kitchen_path(@user, @user.kitchen), class: "order-button"%>
       </h3>
     <% end %>
- </div>
+</div>
 
   <div class = "large-8 columns">
     <dl class = "tabs" data-tab>

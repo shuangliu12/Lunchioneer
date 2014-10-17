@@ -32,6 +32,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'search' => 'search#index'
+
+
   # namespace :admin do
   #   resources :users, only: [:index]
   # end
