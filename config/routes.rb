@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:show]
   end
 
-  resources :meals, except: [:show] do
+  resources :meals, except: [:index, :show] do
     resources :orders
   end
 

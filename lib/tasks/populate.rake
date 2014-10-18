@@ -31,7 +31,7 @@ namespace :db do
           Meal.populate(2) do |meal|
             meal.user_id = kitchen.user_id
             meal.name = Faker::Lorem.word
-            meal.description = Faker::Lorem.sentence
+            meal.description = Faker::Lorem.sentences(1..2)
             meal.price = 1..20
             meal.portion = 1..5
             meal.meal_date = Faker::Date.between(400.days.ago, Date.today)
