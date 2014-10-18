@@ -27,4 +27,30 @@
   padding: 5px;
 }
 
+div.caption {
+  background: rgba(0, 0, 0, 0.6);
+  /*color: #ffffff;*/
+  color: white;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+div.caption > h2 {
+  color: white;
+  padding-top: 100px;
+}
+
+div.caption:hover {
+  opacity: 1;
+}
+
+.row {
+  margin-top: 40px;
+}
+
 

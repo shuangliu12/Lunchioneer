@@ -62,8 +62,13 @@
       <li class="bullet-item">Date: <%=meal.meal_date.to_date.strftime("%B %d, %Y")%></li>
     <% if user_signed_in? %>
      <% if meal.portion > 0 %>
+      <% if meal.meal_date >= Time.now%>
       <li class="bullet-item"><%= link_to "Order", meal_orders_path(meal), method: :post, class: "large button", class: "order-button"%>
       </li>
+      <% else %>
+        <li class="bullet-item"> Time Out </li>
+      <% end %>
+
         <% else %>
       <li class="bullet-item"> Sold Out </li>
         <% end %>
