@@ -26,7 +26,7 @@ feature "authenticated user can edit or delete meal" do
     fill_in("Description", with: "authentic food" )
     fill_in("Price", with: 3)
     fill_in("Portion", with: 3)
-    select '2011', from: "meal_meal_date_1i"
+    select '2016', from: "meal_meal_date_1i"
     select 'October', from: "meal_meal_date_2i"
     select '15', from: "meal_meal_date_3i"
 
