@@ -21,10 +21,12 @@
   <section class="top-bar-section">
     <ul class = "right" >
       <% if user_signed_in? %>
-        <% if current_user.kitchen == true %>
-          <li>
-            <%= link_to "I am a Chef", user_kitchen_path(current_user, current_user.kitchen) %>
-          </li>
+        <% if current_user.kitchen %>
+          <% if current_user.kitchen.id %>
+            <li>
+              <%= link_to "I am a Chef", user_kitchen_path(current_user, current_user.kitchen) %>
+            </li>
+          <% end %>
         <% end %>
         <li class = "has-dropdown">
           <%= link_to current_user.email, user_path(current_user) %>

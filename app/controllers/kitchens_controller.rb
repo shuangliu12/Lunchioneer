@@ -4,14 +4,16 @@ class KitchensController < ApplicationController
   def index
     if params[:search]
       @kitchens = Kitchen.search(params[:search])
+      # result = ActiveRecord::Base.connection.execute("SELECT")
+      # result = Kitchen.find_by_sql("SELECT * FROM kitchens")
     else
-      @kitchens = Kitchen.includes(:user)
+      @kitchens = Kitchen.includes(:user).order(:id)
     end
   end
 
   def show
     @kitchen = Kitchen.find(params[:id])
-    @meals = @kitchen.user.meals.order(:created_at).page(params[:page]).per(1)
+    @meals = @kitchen.user.meals.order("meal_date DESC").page(params[:page]).per(1)
     @review = Review.new
     @reviews = Review.where(kitchen: @kitchen).order("created_at desc")
   end

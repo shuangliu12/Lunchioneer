@@ -16,7 +16,7 @@
     </h3>
 
     <div class = "panel">
-      <%= @user.description%>
+      <%= @user.description %>
     </div>
 
     <% if @user.kitchen.nil? %>
@@ -32,13 +32,13 @@
 
   <div class = "large-8 columns">
     <dl class = "tabs" data-tab>
-      <dd class = "active"><a href="#panel1" class="link">Order History</a></dd>
-      <dd><a href="#panel2" class="link">My Meals</a></dd>
-      <dd><a href="#panel3" class="link">My Reviews</a></dd>
+      <dd class = "active"><a href="#panel1" class="link">My Reviews</a></dd>
+      <dd><a href="#panel2" class="link">My Orders</a></dd>
+      <dd><a href="#panel3" class="link">My Meals</a></dd>
     </dl>
 
     <div class="tabs-content">
-      <div class = "content active" id="panel1">
+      <div class = "content active" id="panel2">
         <ul class = "list">
           <% @orders.each do |order|%>
             <li class="panel">
@@ -69,7 +69,7 @@
       </div>
 
 
-    <div class="content" id="panel2">
+    <div class="content" id="panel3">
       <ul class="list">
         <% @meals.each do |meal| %>
          <li class="panel">
@@ -84,7 +84,7 @@
         <% end %>
       </div>
 
-    <div class = "content" id = "panel3">
+    <div class = "content" id = "panel1">
       <ul class = "list">
         <% @reviews.each do |review| %>
           <li class = "panel">
