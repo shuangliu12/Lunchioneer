@@ -3,7 +3,7 @@ class KitchensController < ApplicationController
 
   def index
     if params[:search]
-      @kitchens = Kitchen.search(params[:search])
+      @kitchens = Kitchen.search(params[:search]).order(:id)
       # result = ActiveRecord::Base.connection.execute("SELECT")
       # result = Kitchen.find_by_sql("SELECT * FROM kitchens")
     else

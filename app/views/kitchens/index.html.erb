@@ -4,12 +4,10 @@
   <h3>  Search Results</h3>
 </div>
 
-
 <% @kitchens.each do |kitchen| %>
-    <div class = "large-4 columns">
-    <div class = "panel">
+<div class = "large-4 columns">
+    <div class = "panel" id="kitchen-panels">
       <% if kitchen.user.meals.last%>
-
        <%= image_tag kitchen.kitchen_photo.url %>
         <p><%=  kitchen.user.meals.last.name %> ($<%= kitchen.user.meals.last.price%>.00)</p>
       <% end %>
@@ -17,7 +15,6 @@
     <p><%= link_to kitchen.name, user_kitchen_path(kitchen.user, kitchen), class: "link" %>, Chef <%= link_to kitchen.user.first_name, user_path(kitchen.user), class: "link"%></p>
     <p> <%= kitchen.address%>, <%= kitchen.city%>, <%= kitchen.state%>, <%= kitchen.zipcode%></p>
  </div>
-
 </div>
 <% end %>
 
