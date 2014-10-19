@@ -5,7 +5,8 @@ namespace :db do
     require 'faker'
     User.populate(20) do |user|
       user.username = Faker::Name.first_name
-      user.first_name = Faker::Name.first_name
+      user.description = Populator.sentences(1..2)
+      user.first_name = user.username
       user.encrypted_password = "12345678"
       user.email = Faker::Internet.email
       user.sign_in_count = 3

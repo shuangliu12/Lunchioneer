@@ -1,24 +1,31 @@
-<% if current_user %>
-    <%= form_for [@review.kitchen, @review] do |f| %>
-      <% if @review.errors.any?%>
-        <%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:
-        <ul>
-          <% @review.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+<hr \>
+
+<div class = "row">
+  <div class = "large-6 columns">
+    <% if current_user %>
+        <%= form_for [@review.kitchen, @review] do |f| %>
+          <% if @review.errors.any?%>
+            <%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:
+            <ul>
+              <% @review.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
           <% end %>
-        </ul>
+
+          <%= f.label :body, "Your Review" %><br>
+          <%= f.text_field :body %>
+
+        <p>
+          <%= f.label :rating %><br>
+          <%= f.select :rating, 1..5%>
+        </p>
+        <%= f.submit class: "update_button" %>
       <% end %>
 
-      <%= f.label :body, "Your Review" %><br>
-      <%= f.text_field :body %>
+    <% else %>
+      <p>Please <%=link_to "sign in", user_session_path%>  to leave a review.</p>
+    <% end %>
 
-    <p>
-      <%= f.label :rating %><br>
-      <%= f.select :rating, 1..5%>
-    </p>
-    <%= f.submit %>
-  <% end %>
-
-<% else %>
-  <p>Please <%=link_to "sign in", user_session_path%>  to leave a review.</p>
-<% end %>
+  </div>
+</div>
